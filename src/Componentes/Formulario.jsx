@@ -34,7 +34,7 @@ const FormularioCadastro = (props) => {
           id="name"
           value={formData.name}
           onChange={handleChange}
-          pattern="[A-Za-z ]"
+          pattern="[A-Za-z ]+"
         />
         <br />
         <label>E-mail: </label>
