@@ -74,7 +74,7 @@ const FormularioCadastro = (props) => {
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="inputEstado" id="estado">
+        <label>
           Estado:
         </label>
         <select
