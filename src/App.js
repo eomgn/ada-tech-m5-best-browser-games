@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import Formulario from './Componentes/Formulario.jsx';
+import React, { useState } from "react";
 
 function App() {
+  const [formularioData, setFormularioData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    date: "",
+    country: "",
+    estado: "",
+  });
+
+  const handleFormularioChange = (newData) => {
+    setFormularioData(newData);
+  };
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Formulario
+      name={formularioData.name}
+      email={formularioData.email}
+      password={formularioData.password}
+      date={formularioData.date}
+      country={formularioData.country}
+      estado={formularioData.estado}
+      onFormularioChange={handleFormularioChange} />
     </div>
   );
 }
