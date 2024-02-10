@@ -1,72 +1,94 @@
-# Getting Started with Create React App
+## Curso Vem Ser Tech - Front End (Ada Tech em parceria com o iFood).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 🚀 Projeto final do módulo Framework de Front End I (React).
 
-## Available Scripts
+Neste projeto final do módulo de Framework de Front End I (React), você terá a oportunidade de demonstrar suas habilidades em React, incluindo:
 
-In the project directory, you can run:
+- Arquitetura de Componentes: Crie componentes reutilizáveis e bem estruturados que sigam os princípios do React;
+- Props e PropTypes: Use props para passar dados para componentes e PropTypes para validar esses dados;
+- State e State Lifting: Use state para armazenar dados que mudam ao longo do tempo e state lifting para compartilhar state entre componentes;
+- React Router: Use o React Router para criar navegação entre páginas e componentes;
+- Renderização de Componentes (Condicional e Listas): Use a renderização condicional para renderizar componentes apenas quando necessário e a renderização de listas para renderizar uma lista de componentes;
+- Composição de Componentes: Use a composição de componentes para criar componentes mais complexos a partir de componentes menores;
+- Formulários: Use formulários para coletar dados do usuário;
+- Ciclo de Vida de Componentes: Use os métodos do ciclo de vida de componentes para controlar o comportamento dos componentes ao longo do seu ciclo de vida.
 
-### `npm start`
+### Para realizar este projeto, você deverá criar uma aplicação web que atenda aos seguintes requisitos:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- A aplicação deve usar o React como framework principal.
+- A aplicação deve implementar pelo menos um componente para cada tópico mencionado acima.
+- A aplicação deve ser funcional e bem projetada.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Descrição do projeto
 
-teste
+O BestBrowserGames é uma comunidade web onde seus membros poderão compartilhar as suas impressões sobre os browser games que já jogaram, identificando o que gostaram e o que não gostaram. Com estas informações, o BestBrowserGames poderá dar para cada membro recomendações de browser games que ele ainda não conhece e que provavelmente irá gostar.
 
-### `npm test`
+Este projeto tem como objetivo desenvolver uma aplicação web para o BestBrowserGames utilizando o React como framework principal. A aplicação deverá atender aos seguintes requisitos:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Requisitos
 
-### `npm run build`
+1. Cadastro: A aplicação deverá permitir que qualquer pessoa se cadastre como membro do BestBrowserGames, fornecendo as seguintes informações: Nome completo, E-mail, Senha, Data de nascimento, Estado, País. Os membros deverão ser capazes de atualizar posteriormente os dados fornecidos no cadastro.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Entrar com uma conta e realizar alteração de dados cadastrais de membros: A aplicação deverá permitir que qualquer pessoa cadastrada possa fazer o login, fornecendo as seguintes informações: E-mail, Senha. Os membros deverão ser capazes de atualizar os dados fornecidos no cadastro.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Cadastro e gerenciamento de browser games: O administrador do BestBrowserGames deverá ser responsável por cadastrar os browsers games que serão avaliados pelos membros. Os browsers games deverão ser organizados nas seguintes categorias iniciais: Strategy, Shooter, Puzzle, Arcade, Role Playing Game (RPG), Sports, Action, Adventure. No entanto, o administrador poderá editar esta lista, criando novas categorias ou alterando os nomes das categorias já cadastradas. Ao cadastrar um browser game, o administrador deverá fornecer as seguintes informações: Nome, Categoria, URL de acesso ao jogo, URL do vídeo de demonstração (se houver), Descrição, Imagem ilustrativa.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Busca por browser games: Os membros deverão ser capazes de buscar pelos browsers games cadastrados de duas maneiras: Por nome ou por parte do nome, Por categoria.
 
-### `npm run eject`
+5. Avaliação de browser games: Após navegar até um determinado browser game, o membro poderá avaliá-lo definindo quantas estrelas (de 1 a 5) dará para o jogo e escrevendo um texto de até 255 caracteres. Caso o membro já tenha avaliado o browser game anteriormente, ele visualizará as informações da avaliação que havia feito e terá a opção de alterá-las.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. Visualização de avaliações de browser games: Após navegar até um determinado browser game, o membro poderá também visualizar uma lista com todas as avaliações que já foram feitas para o jogo selecionado pelos outros membros do BestBrowserGames.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+7. Recomendações de browser games: Ao escolher visualizar as recomendações que o BestBrowserGames tem a oferecer, o membro visualizará uma lista com os browsers games que ele ainda não avaliou e provavelmente irá gostar. Para dar recomendações de acordo com o "gosto" do membro.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### ☕ Observações
 
-## Learn More
+### A aplicação será avaliada com base nos seguintes critérios:
+- Cumprimento dos requisitos: A aplicação deve atender a todos os requisitos especificados.
+- Implementação: A aplicação deve estar bem implementada, usando as técnicas e conceitos corretos.
+- Funcionalidade: A aplicação deve ser funcional e atender aos requisitos do usuário.
+- Design: A aplicação deve ser bem projetada, usando uma estética agradável e fácil de usar.
+  
+### 🤝 Colaboradores
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/147329714?v=4" width="100px;" alt="Foto do Edson no Github"/><br>
+        <sub>
+          <b>Edson Flavio</b>
+        </sub>
+      </a>
+    </td>  
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/139514670?v=4" width="100px;" alt="Foto do Gabriel no Github"/><br>
+        <sub>
+          <b>Gabriel Funatsus</b>
+        </sub>
+      </a>
+    </td>     
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/20049294?v=4" width="100px;" alt="Foto do Juscelino Messias no Github"/><br>
+        <sub>
+          <b>Juscelino Messias</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/83884728?v=4" width="100px;" alt="Foto do Matheus no Github"/><br>
+        <sub>
+          <b>Matheus Gabriel Nogueira</b>
+        </sub>
+      </a>
+    </td>          
+  </tr>
+</table>
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### ❤️ Resultado final
