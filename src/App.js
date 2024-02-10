@@ -17,6 +17,22 @@ function App() {
     setFormularioData(newData);
   };
 
+  // Lista estática de categorias, o componente CategoryDropdwon está lendo os dados da maneira estruturada abaixo
+  const categories = [
+    { id: "1", name: "Ação" },
+    { id: "2", name: "Aventura" },
+    { id: "3", name: "Estratégia" },
+    { id: "4", name: "RPG" },
+  ];
+
+  const handleSearch = (searchTerm) => {
+    console.log("Pesquisar por:", searchTerm);
+  };
+
+  const handleCategoryChange = (selectedCategory) => {
+    console.log("Categoria selecionada:", selectedCategory);
+  };
+
   return (
     <div className="App">
       <Formulario
@@ -28,7 +44,12 @@ function App() {
         estado={formularioData.estado}
         onFormularioChange={handleFormularioChange}
       />
-      <SearchSortBar />
+
+      <SearchSortBar
+        categories={categories}
+        onSearch={handleSearch}
+        onCategoryChange={handleCategoryChange}
+      />
     </div>
   );
 }
