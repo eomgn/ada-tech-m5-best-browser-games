@@ -1,5 +1,6 @@
 import "./App.css";
 import Formulario from "./Componentes/Formulario.jsx";
+import SearchSortBar from "./Componentes/SearchSortBar.jsx";
 import React, { useState } from "react";
 import Table from "./Componentes/Table.jsx";
 
@@ -15,6 +16,22 @@ function App() {
 
   const handleFormularioChange = (newData) => {
     setFormularioData(newData);
+  };
+
+  // Lista estática de categorias, o componente CategoryDropdwon está lendo os dados da maneira estruturada abaixo
+  const categories = [
+    { id: "1", name: "Ação" },
+    { id: "2", name: "Aventura" },
+    { id: "3", name: "Estratégia" },
+    { id: "4", name: "RPG" },
+  ];
+
+  const handleSearch = (searchTerm) => {
+    console.log("Pesquisar por:", searchTerm);
+  };
+
+  const handleCategoryChange = (selectedCategory) => {
+    console.log("Categoria selecionada:", selectedCategory);
   };
 
   const gameData = [
@@ -139,6 +156,12 @@ function App() {
       />
 
       <Table data={filteredGameData} />
+
+      <SearchSortBar
+        categories={categories}
+        onSearch={handleSearch}
+        onCategoryChange={handleCategoryChange}
+      />
     </div>
   );
 }
