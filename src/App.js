@@ -17,7 +17,7 @@ function App() {
     setFormularioData(newData);
   };
 
-  const gameScoreList = [
+  const gameData = [
     {
       _id: "1",
       score: 4,
@@ -90,6 +90,42 @@ function App() {
     },
   ];
 
+  const calculateAverageGameScore = (gameId) => {
+    const gameReptition = gameData.filter((game) => game.game._id === gameId);
+    const totalScore = gameReptition.reduce(
+      (total, entry) => total + entry.score,
+      0
+    );
+    return totalScore / gameReptition.length;
+  };
+
+  const uniqueGames = {};
+
+  const filteredGameData = gameData.reduce((accumulator, entry) => {
+    if (!uniqueGames[entry.game._id]) {
+      uniqueGames[entry.game._id] = true;
+
+      const averageScore = calculateAverageGameScore(entry.game._id);
+
+      accumulator.push({
+        _id: entry._id,
+        score: entry.score,
+        game: {
+          _id: entry.game._id,
+          name: entry.game.name,
+          category: {
+            _id: entry.game.category._id,
+            name: entry.game.category.name,
+          },
+          imageURL: entry.game.imageURL,
+          averageScore: averageScore,
+        },
+      });
+    }
+
+    return accumulator;
+  }, []);
+
   return (
     <div className="App">
       <Formulario
@@ -102,7 +138,7 @@ function App() {
         onFormularioChange={handleFormularioChange}
       />
 
-      <Table data={gameScoreList} />
+      <Table data={filteredGameData} />
     </div>
   );
 }

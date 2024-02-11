@@ -3,14 +3,6 @@ import TableRow from "./TableRow.jsx";
 
 const Table = (props) => {
   const { data } = props;
-  const calculateAverageScore = (gameId) => {
-    const gameScores = data.filter((score) => score.game._id === gameId);
-    const totalScores = gameScores.reduce(
-      (total, score) => total + score.score,
-      0
-    );
-    return totalScores / gameScores.length;
-  };
 
   return (
     <table>
@@ -27,7 +19,7 @@ const Table = (props) => {
           <TableRow
             key={item.game._id}
             data={item}
-            averageScore={calculateAverageScore(item.game._id)}
+            averageScore={item.game.averageScore}
           />
         ))}
       </tbody>
