@@ -155,13 +155,13 @@ function App() {
         onFormularioChange={handleFormularioChange}
       />
 
-      <Table data={filteredGameData} />
-
       <SearchSortBar
         categories={categories}
         onSearch={handleSearch}
         onCategoryChange={handleCategoryChange}
       />
+
+      <Table data={filteredGameData} />
     </div>
   );
 }
