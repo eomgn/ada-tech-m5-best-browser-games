@@ -22,23 +22,24 @@ const Login = () => {
     }); 
     
     const onSubmit = async (formData) => {
-        try{
-            const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
-            
-            if(data.length && data[0].id){
-                navigate('/feed') 
-                return
-            }
+        try {
+            const response = await api.post('https://api-best-browser-games.vercel.app/users/login', {
+                email: formData.email,
+                password: formData.password,
+            });
 
-            alert('Usuário ou senha inválido')
-        }catch(e){
-            //TODO: HOUVE UM ERRO
+            if (response.status === 201) {
+                navigate('/descricao-jogo');
+            } else {
+                alert('Usuário ou senha inválido');
+            }
+        } catch (error) {
+            alert('Usuário ou senha inválido');
         }
     };    
 
     return (
         <>
-
             <Header />
 
             <body>
@@ -50,12 +51,39 @@ const Login = () => {
                         <Text text="Acesse o Best Browser Games com a sua conta." />
                         
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
-                            {errors.email && <span>E-mail é obrigatório</span>}
-                                                
-                            <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
-                            {errors.senha && <span>Senha é obrigatório</span>}
-                                                
+
+                            <Input
+                                type="email"
+                                placeholder="Digite seu e-mail"
+                                leftIcon={<MdEmail />}
+                                id="email"
+                                name="email"
+                                control={control}
+                                rules={{
+                                    required: 'E-mail é obrigatório',
+                                    pattern: {
+                                        value: /^\S+@\S+$/i,
+                                        message: 'Digite um e-mail válido',
+                                    },
+                                }}
+                            />
+                            {errors.email && <span>{errors.email.message}</span>}
+          
+                            <Input
+                                type="password"
+                                placeholder="Digite uma senha"
+                                leftIcon={<MdLock />}
+                                id="password"
+                                name="password"
+                                control={control}
+                                rules={{
+                                    required: 'Senha é obrigatória'
+                                }}
+                            />
+                            {errors.password && <span>{errors.password.message}</span>}
+                                                        
+                            <br />
+
                             <Button title="Entrar" variant="secondary" type="submit"/>
                         </form>
 
@@ -63,97 +91,11 @@ const Login = () => {
                             <Link to="/recuperar-senha" className="esqueci-text">Esqueci minha senha </Link>
                             <Link to="/criar-conta" className="criar-text"> Criar Conta</Link>               
                         </div>
-                                               
                     </div>                    
                 </div>
             </body>
-
-  
         </>
     )
 }
 
 export { Login }
-
-
-
-
-
-
-// import { MdEmail, MdLock } from 'react-icons/md'
-// import { Button } from '../../Componentes/Button/Button.jsx';
-// import { Header } from '../../Componentes/Header/Header.jsx';
-// import { Input } from '../../Componentes/Input/Input.jsx';
-// import { useForm } from "react-hook-form";
-// import { useNavigate } from 'react-router-dom';
-// import { api } from '../../Services/api';
-// import { Container, Title, Column, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
-
-// const Login = () => {
-
-//     const navigate = useNavigate()
-
-//     const { control, handleSubmit, formState: { errors  } } = useForm({
-//         reValidateMode: 'onChange',
-//         mode: 'onChange',
-//     });
-
-//     const onSubmit = async (formData) => {
-//         try{
-//             const {data} = await api.get(`/users?email=${formData.email}&senha=${formData.senha}`);
-            
-//             if(data.length && data[0].id){
-//                 navigate('/feed') 
-//                 return
-//             }
-
-//             alert('Usuário ou senha inválido')
-//         }catch(e){
-//             //TODO: HOUVE UM ERRO
-//         }
-//     };
-
-//     console.log('errors', errors);
-
-//     return (
-//         <>
-
-//         <Header />
-
-//         <Container>
-
-//             <Column>
-//                 <Title>
-//                     Compartilhe as impressões sobre os Browser games que você já jogou...
-//                 </Title>
-//             </Column>
-
-//             <Column>
-//                 <Wrapper>
-//                 <SubtitleLogin>Acesse o Best Browser Games com a sua conta</SubtitleLogin>
-                
-//                 <form onSubmit={handleSubmit(onSubmit)}>
-//                     <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
-//                     {errors.email && <span>E-mail é obrigatório</span>}
-                    
-//                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
-//                     {errors.senha && <span>Senha é obrigatório</span>}
-                    
-//                     <Button title="Entrar" variant="secondary" type="submit"/>
-//                 </form>
-
-//                 <Row>
-//                     <EsqueciText>Esqueci minha senha</EsqueciText>
-//                     <CriarText>Criar Conta</CriarText>
-//                 </Row>
-
-//                 </Wrapper>
-//             </Column>
-
-//         </Container>
-    
-//         </>
-//     )
-// }
-
-// export { Login }
