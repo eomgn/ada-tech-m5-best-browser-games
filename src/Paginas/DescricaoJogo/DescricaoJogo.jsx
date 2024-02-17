@@ -1,51 +1,84 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import './styles.css';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import "./styles.css";
 
-import jogo from '../../Assets/Imagens/jogo-01.jpg';
-
-import { Header } from '../../Componentes/Header/Header.jsx';
-import { Title } from '../../Componentes/Title/Title.jsx';
-import { Text } from '../../Componentes/Text/Text.jsx';
+import { Header } from "../../Componentes/Header/Header.jsx";
+import { Title } from "../../Componentes/Title/Title.jsx";
+import { Text } from "../../Componentes/Text/Text.jsx";
 
 const DescricaoJogo = () => {
+  const gameData = [
+    {
+      _id: "1",
+      name: "Wordle",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
+      videoURL: "string",
+    },
+    {
+      _id: "2",
+      name: "GeoGuessr",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
+      videoURL: "string",
+    },
+    {
+      _id: "3",
+      name: "Gartic Phone",
+      category: {
+        _id: "2",
+        name: "Party",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
+      videoURL: "string",
+    },
+  ];
+  const { id } = useParams();
+  const jogo = gameData.find((game) => game._id === id);
 
-    return (
-        <>
+  if (!jogo) {
+    return <div>Jogo não encontrado</div>;
+  }
 
-            <Header />
+  return (
+    <>
+      <Header />
 
-            <body>
-                <div className="body__content">
-                    <div className="body__content--jogo">
-                        <figure>
-                            <img src={jogo} alt="Jogo-01" title="Jogo-01" />
-                        </figure>
-                    </div>                    
-                    <div className="body__content--text">
-                        <Title title="Baldur’s Gate 3" color="#f7b84b" />
-                        <Text text="Fechando a nossa lista dos melhores jogos de 203 com chave de ouro, temos o grande campeão “Baldur’s Gate 3”. Desenvolvido por Larian Studios, este RPG épico mergulha os jogadores em um universo vasto, repleto de magia, criaturas misteriosas e escolhas que moldam a narrativa de maneiras surpreendentes." />
-                        <Link to="/login">
-                            <button className="button--assine">Avaliar</button>
-                        </Link>  
-                    </div>                   
-                </div>
-            </body>
+      <body>
+        <div className="body__content">
+          <div className="body__content--jogo">
+            <figure>
+              <img src={jogo.imageURL} alt={jogo.name} title={jogo.name} />
+            </figure>
+          </div>
+          <div className="body__content--text">
+            <Title title={jogo.name} color="#f7b84b" />
+            <Text text={jogo.description} />
+            <Link to="/login">
+              <button className="button--assine">Avaliar</button>
+            </Link>
+          </div>
+        </div>
+      </body>
+    </>
+  );
+};
 
-  
-        </>
-    )
-}
-
-export { DescricaoJogo }
-
-
-
-
-
-
-
-
+export { DescricaoJogo };
 
 // import { useNavigate  } from "react-router-dom";
 // import { Button } from '../../Componentes/Button';
@@ -63,7 +96,7 @@ export { DescricaoJogo }
 
 //     return (
 //         <>
-        
+
 //         <Header />
 
 //         <Container>
@@ -74,7 +107,7 @@ export { DescricaoJogo }
 
 //                 <TextContent>
 //                     O Best Browser Games é uma comunidade web onde seus membros poderão compartilhar as suas impressões sobre os browser games que já jogaram, identificando o que gostaram e o que não gostaram.
-                    
+
 //                     <br /><br /><br />
 
 //                     <Button title="Começar agora" variant="secondary" onClick={handleClickSignIn} />
@@ -84,7 +117,7 @@ export { DescricaoJogo }
 //             <ImageContainer id="container_imagem">
 //                 <Image src={bannerImage} alt="Imagem principal do site." />
 //             </ImageContainer>
-            
+
 //         </Container>
 
 //         </>

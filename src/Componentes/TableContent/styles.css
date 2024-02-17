@@ -1,0 +1,15 @@
+td,
+p {
+  font-family: "Open Sans";
+  color: #f7b84b !important;
+  background-color: transparent;
+  height: 20px;
+  width: 200px;
+}
+
+.jogo-imagem {
+  width: 90px;
+  height: 60px;
+  object-fit: cover;
+  vertical-align: middle;
+}
