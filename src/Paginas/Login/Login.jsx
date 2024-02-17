@@ -34,8 +34,7 @@ const Login = () => {
                 alert('Usuário ou senha inválido');
             }
         } catch (error) {
-            // TODO: HOUVE UM ERRO
-            console.error('Erro ao realizar o login', error);
+            alert('Usuário ou senha inválido');
         }
     };    
 
@@ -52,12 +51,39 @@ const Login = () => {
                         <Text text="Acesse o Best Browser Games com a sua conta." />
                         
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <Input type="email" placeholder="Digite seu e-mail" leftIcon={<MdEmail />} id="email" name="email" control={control} />
-                            {errors.email && <span>E-mail é obrigatório</span>}
-                                                
-                            <Input type="password" placeholder="Digite uma senha" leftIcon={<MdLock />} id="password" name="password" control={control} pattern="[0-9]*" />
-                            {errors.password && <span>Senha é obrigatório</span>}    
-                                                
+
+                            <Input
+                                type="email"
+                                placeholder="Digite seu e-mail"
+                                leftIcon={<MdEmail />}
+                                id="email"
+                                name="email"
+                                control={control}
+                                rules={{
+                                    required: 'E-mail é obrigatório',
+                                    pattern: {
+                                        value: /^\S+@\S+$/i,
+                                        message: 'Digite um e-mail válido',
+                                    },
+                                }}
+                            />
+                            {errors.email && <span>{errors.email.message}</span>}
+          
+                            <Input
+                                type="password"
+                                placeholder="Digite uma senha"
+                                leftIcon={<MdLock />}
+                                id="password"
+                                name="password"
+                                control={control}
+                                rules={{
+                                    required: 'Senha é obrigatória'
+                                }}
+                            />
+                            {errors.password && <span>{errors.password.message}</span>}
+                                                        
+                            <br />
+
                             <Button title="Entrar" variant="secondary" type="submit"/>
                         </form>
 
