@@ -11,46 +11,6 @@ import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
 import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
 
 function App() {
-  const gameData = [
-    {
-      _id: "1",
-      name: "Wordle",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
-      videoURL: "string",
-    },
-    {
-      _id: "2",
-      name: "GeoGuessr",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
-      videoURL: "string",
-    },
-    {
-      _id: "3",
-      name: "Gartic Phone",
-      category: {
-        _id: "2",
-        name: "Party",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
-      videoURL: "string",
-    },
-  ];
   return (
     <div className="App">
       <BrowserRouter>
@@ -61,10 +21,7 @@ function App() {
           <Route path="/criar-conta" element={<CriarConta />} />
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
           <Route path="/game" element={<ListaJogo />} />
-          <Route
-            path="/game/:id"
-            element={<DescricaoJogo gameData={gameData} />}
-          />
+          <Route path="/game/:id" element={<DescricaoJogo />} />
         </Routes>
       </BrowserRouter>
     </div>

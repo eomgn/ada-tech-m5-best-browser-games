@@ -6,7 +6,47 @@ import { Header } from "../../Componentes/Header/Header.jsx";
 import { Title } from "../../Componentes/Title/Title.jsx";
 import { Text } from "../../Componentes/Text/Text.jsx";
 
-const DescricaoJogo = ({ gameData }) => {
+const DescricaoJogo = () => {
+  const gameData = [
+    {
+      _id: "1",
+      name: "Wordle",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
+      videoURL: "string",
+    },
+    {
+      _id: "2",
+      name: "GeoGuessr",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
+      videoURL: "string",
+    },
+    {
+      _id: "3",
+      name: "Gartic Phone",
+      category: {
+        _id: "2",
+        name: "Party",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
+      videoURL: "string",
+    },
+  ];
   const { id } = useParams();
   const jogo = gameData.find((game) => game._id === id);
 
