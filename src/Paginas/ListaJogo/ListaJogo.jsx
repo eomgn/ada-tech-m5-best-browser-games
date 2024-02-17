@@ -8,158 +8,59 @@ import { Header } from "../../Componentes/Header/Header.jsx";
 import "./styles.css";
 
 const ListaJogo = () => {
-  const gameRatingData = [
+  const gameData = [
     {
       _id: "1",
-      score: 5,
-      description: "string",
-      game: {
+      name: "Wordle",
+      category: {
         _id: "1",
-        name: "Wordle",
-        category: {
-          _id: "1",
-          name: "Puzzle",
-        },
-        description: "string",
-        url: "string",
-        imageURL:
-          "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
-        videoURL: "string",
+        name: "Puzzle",
       },
-      user: {
-        name: "string",
-        email: "string",
-        birthDate: "string",
-        country: "string",
-        state: "string",
-      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
+      videoURL: "string",
     },
     {
       _id: "2",
-      score: 4,
+      name: "GeoGuessr",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
       description: "string",
-      game: {
-        _id: "2",
-        name: "GeoGuessr",
-        category: {
-          _id: "1",
-          name: "Puzzle",
-        },
-        description: "string",
-        url: "string",
-        imageURL:
-          "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
-        videoURL: "string",
-      },
-      user: {
-        name: "string",
-        email: "string",
-        birthDate: "string",
-        country: "string",
-        state: "string",
-      },
+      url: "string",
+      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
+      videoURL: "string",
     },
     {
       _id: "3",
-      score: 4,
+      name: "Gartic Phone",
+      category: {
+        _id: "2",
+        name: "Party",
+      },
       description: "string",
-      game: {
-        _id: "3",
-        name: "Gartic Phone",
-        category: {
-          _id: "2",
-          name: "Party",
-        },
-        description: "string",
-        url: "string",
-        imageURL:
-          "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
-        videoURL: "string",
-      },
-      user: {
-        name: "string",
-        email: "string",
-        birthDate: "string",
-        country: "string",
-        state: "string",
-      },
-    },
-    {
-      _id: "4",
-      score: 4,
-      description: "string",
-      game: {
-        _id: "1",
-        name: "Wordle",
-        category: {
-          _id: "1",
-          name: "Puzzle",
-        },
-        description: "string",
-        url: "string",
-        imageURL:
-          "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
-        videoURL: "string",
-      },
-      user: {
-        name: "string",
-        email: "string",
-        birthDate: "string",
-        country: "string",
-        state: "string",
-      },
+      url: "string",
+      imageURL:
+        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
+      videoURL: "string",
     },
   ];
 
   const categories = [
-    { _id: "1", name: "Ação" },
-    { _id: "2", name: "Aventura" },
+    { _id: "5", name: "Ação" },
+    { _id: "4", name: "Aventura" },
     { _id: "3", name: "Estratégia" },
-    { _id: "4", name: "Party" },
-    { _id: "5", name: "Puzzle" },
+    { _id: "2", name: "Party" },
+    { _id: "1", name: "Puzzle" },
     { _id: "6", name: "Shooter" },
   ];
 
-  const calculateAverageGameScore = (gameId) => {
-    const sameGame = gameRatingData.filter((game) => game.game._id === gameId);
-    const totalGameScore = sameGame.reduce(
-      (total, review) => total + review.score,
-      0
-    );
-
-    return sameGame.length > 0 ? totalGameScore / sameGame.length : 0;
-  };
-
-  const uniqueGameEntry = {};
-
-  const uniqueGameData = gameRatingData.reduce((uniqueGameList, game) => {
-    if (!uniqueGameEntry[game.game._id]) {
-      uniqueGameEntry[game.game._id] = true;
-
-      const averageScore = calculateAverageGameScore(game.game._id);
-
-      uniqueGameList.push({
-        _id: game._id,
-        score: game.score,
-        game: {
-          _id: game.game._id,
-          name: game.game.name,
-          category: {
-            _id: game.game.category._id,
-            name: game.game.category.name,
-          },
-          imageURL: game.game.imageURL,
-          averageScore: averageScore,
-        },
-      });
-    }
-
-    return uniqueGameList;
-  }, []);
-
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredGame, setFilteredGame] = useState(uniqueGameData);
+  const [game, setGame] = useState(gameData);
 
   function handleChangeCategory(event) {
     setCategory(event.target.value);
@@ -171,15 +72,15 @@ const ListaJogo = () => {
 
   const filterByCategory = () => {
     return category === ""
-      ? uniqueGameData
-      : uniqueGameData.filter((game) => game.game.category.name === category);
+      ? game
+      : game.filter((game) => game.category.name === category);
   };
 
   const filterBySearchTerm = (selectedGameByCategory) => {
     return searchTerm === ""
       ? selectedGameByCategory
       : selectedGameByCategory.filter((game) =>
-          game.game.name.toLowerCase().includes(searchTerm.toLowerCase())
+          game.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
   };
 
@@ -187,7 +88,7 @@ const ListaJogo = () => {
     const selectedGameByCategory = filterByCategory();
     const selectedGameByTerm = filterBySearchTerm(selectedGameByCategory);
 
-    setFilteredGame(selectedGameByTerm);
+    setGame(selectedGameByTerm);
   }
   return (
     <>
@@ -210,7 +111,7 @@ const ListaJogo = () => {
         </div>
         <div className="tabela-de-jogo-container">
           <Table>
-            <TableContent content={filteredGame} />
+            <TableContent content={game} />
           </Table>
         </div>
       </div>

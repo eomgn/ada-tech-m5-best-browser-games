@@ -7,7 +7,6 @@ const Table = (props) => {
         <tr>
           <th colSpan="2">Jogo</th>
           <th>Categoria</th>
-          <th>Avaliação</th>
         </tr>
       </thead>
       {props.children}
