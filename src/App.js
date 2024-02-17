@@ -2,38 +2,76 @@ import "./App.css";
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GlobalStyle } from './Styles/global';
-import { Home } from './Paginas/Home/Home.jsx'
+import { GlobalStyle } from "./Styles/global";
+import { Home } from "./Paginas/Home/Home.jsx";
 import { Login } from "./Paginas/Login/Login.jsx";
 import { CriarConta } from "./Paginas/CriarConta/CriarConta.jsx";
 import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
+import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
 
 function App() {
-
+  const gameData = [
+    {
+      _id: "1",
+      name: "Wordle",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
+      videoURL: "string",
+    },
+    {
+      _id: "2",
+      name: "GeoGuessr",
+      category: {
+        _id: "1",
+        name: "Puzzle",
+      },
+      description: "string",
+      url: "string",
+      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
+      videoURL: "string",
+    },
+    {
+      _id: "3",
+      name: "Gartic Phone",
+      category: {
+        _id: "2",
+        name: "Party",
+      },
+      description: "string",
+      url: "string",
+      imageURL:
+        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
+      videoURL: "string",
+    },
+  ];
   return (
-    
     <div className="App">
-
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/criar-conta" element={<CriarConta />} />
-            <Route path="/recuperar-senha" element={<RecuperarSenha />} />
-            <Route path="/descricao-jogo" element={<DescricaoJogo />} />
-        </Routes >
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/criar-conta" element={<CriarConta />} />
+          <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+          <Route path="/game" element={<ListaJogo />} />
+          <Route
+            path="/game/:id"
+            element={<DescricaoJogo gameData={gameData} />}
+          />
+        </Routes>
       </BrowserRouter>
-
     </div>
   );
 }
 
 export default App;
-
-
-
 
 // import "./App.css";
 // import Formulario from "./Componentes/Formulario.jsx";

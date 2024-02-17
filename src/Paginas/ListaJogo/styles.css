@@ -1,0 +1,18 @@
+.lista-jogo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.barra-de-pesquisa-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabela-de-jogo-container {
+  display: flex;
+  justify-content: center;
+}

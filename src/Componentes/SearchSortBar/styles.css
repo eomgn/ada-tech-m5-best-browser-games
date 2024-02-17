@@ -1,0 +1,13 @@
+.botao-pesquisar {
+  font-family: "Open Sans";
+  color: #f7b84b;
+  border-radius: 50px;
+  padding: 5px;
+  border: 2px solid #f7b84b;
+  outline: none;
+  background-color: transparent;
+  height: 44px;
+  font-weight: bold;
+  width: 100px;
+  cursor: pointer;
+}

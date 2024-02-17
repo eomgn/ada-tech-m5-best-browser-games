@@ -1,0 +1,17 @@
+.lista-categoria {
+  font-family: "Open Sans";
+  color: #f7b84b;
+  border-radius: 7px;
+  padding: 5px;
+  border: 2px solid #f7b84b;
+  outline: none;
+  background-color: transparent;
+  height: 44px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lista-categoria:focus {
+  background-color: black;
+  border-radius: 7px;
+}

@@ -1,0 +1,12 @@
+.tabela-container {
+  margin-top: 50px;
+}
+
+thead tr th {
+  font-family: "Open Sans";
+  color: #f7b84b;
+  background-color: transparent;
+  height: 20px;
+  padding: 10px;
+  padding-bottom: 30px;
+}
