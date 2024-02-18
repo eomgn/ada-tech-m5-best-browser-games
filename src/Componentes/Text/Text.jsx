@@ -4,7 +4,7 @@ import './styles.css';
 const Text = ({ text }) => {
   return (
     <>
-      <p>{text}</p>
+      <p className='texto'>{text}</p>
     </>
   );
 }

@@ -10,7 +10,7 @@ const Dropdown = (props) => {
   return (
     <select className="lista-categoria" value={value} onChange={onChange}>
       <option disabled hidden value="">
-        Selecione uma categoria
+        Por categoria
       </option>
       {renderedCategory}
     </select>

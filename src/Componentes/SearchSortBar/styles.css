@@ -1,13 +1,23 @@
 .botao-pesquisar {
-  font-family: "Open Sans";
-  color: #f7b84b;
-  border-radius: 50px;
-  padding: 5px;
-  border: 2px solid #f7b84b;
-  outline: none;
-  background-color: transparent;
-  height: 44px;
-  font-weight: bold;
-  width: 100px;
+  width: 150px;
+  height: 33px;
+  margin-top: 1px;
+  background: #f7b84b;
+  border-radius: 22px;
+  position: relative;
+  color: #000000;
+  text-align: center;
   cursor: pointer;
+}
+
+.botao-pesquisar::after {
+  content: '';
+  position: absolute;
+  border: 1px solid #f7b84b;
+  height: 33px;
+  top: -5px;
+  left: -6px;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 22px;
 }
