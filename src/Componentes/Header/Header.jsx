@@ -5,6 +5,7 @@ import usuerOn from '../../Assets/Imagens/usuerOn.png';
 import logo from '../../Assets/Imagens/logo-best.png';
 
 
+
 const Header = () => {
   const [userInfo, setUserInfo] = useState(null);
 
@@ -19,6 +20,12 @@ const Header = () => {
       setUserInfo(null);
     }
   }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('nome');
+    sessionStorage.removeItem('email');
+  };
+
 
 
   return (
@@ -40,6 +47,9 @@ const Header = () => {
                 <span>{userInfo.email}</span>
                 <Link to="/alteracao-cadastro">
                   <img src={usuerOn} alt="Online" title="Online" />
+                </Link>
+                <Link to="/login" onClick={handleLogout}>
+                  Sair
                 </Link>
               </div>
             ) : (
