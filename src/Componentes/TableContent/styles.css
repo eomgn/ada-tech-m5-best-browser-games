@@ -1,15 +1,23 @@
-td,
-p {
+td {
   font-family: "Open Sans";
   color: #f7b84b !important;
   background-color: transparent;
   height: 20px;
   width: 200px;
+  border-bottom: 1px solid #ffffff;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .jogo-imagem {
-  width: 90px;
-  height: 60px;
+  width: 150px;
+  height: 100px;
+  background-color: #ffffff;
   object-fit: cover;
-  vertical-align: middle;
+  border: 2px solid #f7b84b;
+  border-radius: 22px;
+  box-shadow: 15px 19px 34px -6px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 15px 19px 34px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 15px 19px 34px -6px rgba(0,0,0,0.75);
+  margin: 20px;
 }
