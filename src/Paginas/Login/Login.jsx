@@ -30,6 +30,7 @@ const Login = () => {
             
             if (response.status === 201) {
                 sessionStorage.setItem('accessToken', response.data.token)
+                sessionStorage.setItem('user_id', response.data.user_id)
                 sessionStorage.setItem('nome', response.data.name)
                 sessionStorage.setItem('email', response.data.email)
 
