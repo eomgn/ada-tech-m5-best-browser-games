@@ -8,6 +8,7 @@ import { Login } from "./Paginas/Login/Login.jsx";
 import { CriarConta } from "./Paginas/CriarConta/CriarConta.jsx";
 import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
+import { AlteracaoCadastro } from './Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx';
 import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
           <Route path="/recuperar-senha" element={<RecuperarSenha />} />
           <Route path="/game" element={<ListaJogo />} />
           <Route path="/game/:id" element={<DescricaoJogo />} />
+          <Route path="/descricao-jogo" element={<DescricaoJogo />} />
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />            
         </Routes>
+
       </BrowserRouter>
     </div>
   );
