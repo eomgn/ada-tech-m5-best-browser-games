@@ -25,35 +25,49 @@ const Header = () => {
     sessionStorage.removeItem('email');
   };
 
-
-
   return (
+
     <>
         <header>
           <div className="header__content">
             <nav>
+
               <figure>
                 <Link to="/">
                   <img src={logo} alt="Best Browser Games" title="Best Browser Games" />
-                </Link>                   
+                </Link> 
               </figure>
+
               <div className="nav__button">
-              <Link to="/">Home</Link>
-              {userInfo ? (
-              <div className="user-info">
-                <span>{userInfo.name}</span>
-                <span>{userInfo.email}</span>
-                <Link to="/alteracao-cadastro">
-                  <img src={usuerOn} alt="Online" title="Online" />
-                </Link>
-                <Link to="/login" onClick={handleLogout}>
-                  Sair
-                </Link>
+                
+                <Link to="/">Home</Link>
+                <Link to="/game">Jogos</Link>
+                
+              
+                {userInfo ? (
+
+                <div className="user-info">
+                  
+                  <Link to="/login" onClick={handleLogout}>Sair</Link>
+                  
+                  <figure>
+                    <Link to="/alteracao-cadastro">
+                        <img className='image-name' src={usuerOn} alt="Online" title="Online" />
+                    </Link>
+                  </figure>
+
+                  <span className='user-name'>{userInfo.name}</span>
+
+                </div>
+
+                ) : (
+
+                <Link to="/login">Entrar</Link>
+            
+                )}
+
               </div>
-            ) : (
-              <Link to="/login">Entrar</Link>
-            )}
-              </div>
+
             </nav>
           </div>
         </header>
