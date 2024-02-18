@@ -18,15 +18,17 @@ const AlteracaoCadastro = () => {
   const enviarDadosParaAPI = async () => {
     try {
       const userId = sessionStorage.getItem('user_id');
+      const accessToken = sessionStorage.getItem('accessToken');
 
-      if (!userId) {
+      if (!userId || !accessToken) {
         throw new Error('Usuário não autenticado');
       }
 
       const response = await fetch(`https://api-best-browser-games.vercel.app/users/${userId}`, {
-        method: 'POST', 
+        method: 'PUT', 
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
         },
         body: JSON.stringify({
           name: newName,
