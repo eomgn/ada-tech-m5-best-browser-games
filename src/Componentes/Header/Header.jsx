@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './styles.css';
-
+import usuerOn from '../../Assets/Imagens/usuerOn.png';
 import logo from '../../Assets/Imagens/logo-best.png';
 
+
 const Header = () => {
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const name = sessionStorage.getItem('nome');
+    const email = sessionStorage.getItem('email');
+    const isLoggedIn = name !== null;
+
+    console.log('nome:', name);
+    console.log('email:', email);
+    console.log('isLoggedIn:', isLoggedIn);
+
+    if (isLoggedIn) {
+      setUserInfo({ name, email });
+    } else {
+      setUserInfo(null);
+    }
+  }, []);
+
+
   return (
     <>
 
@@ -17,8 +37,16 @@ const Header = () => {
                 </Link>                   
               </figure>
               <div className="nav__button">
-                <Link to="/">Home</Link>
-                <Link to="/login">Entrar</Link>               
+              <Link to="/">Home</Link>
+              {userInfo ? (
+              <div className="user-info">
+                <span>{userInfo.name}</span>
+                <span>{userInfo.email}</span>
+                <img src={usuerOn} alt="Online" title="Online" />
+              </div>
+            ) : (
+              <Link to="/login">Entrar</Link>
+            )}
               </div>
             </nav>
           </div>
@@ -34,7 +62,7 @@ export { Header };
 
 
 
-// import React from 'react'
+//import React from 'react'
 // import logo from '../../Assets/logo-best.png';
 
 // import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
