@@ -34,7 +34,7 @@ const Login = () => {
                 sessionStorage.setItem('nome', response.data.name)
                 sessionStorage.setItem('email', response.data.email)
 
-                navigate('/descricao-jogo');
+                navigate('/game');
             } else {
                 alert('Usuário ou senha inválido');
             }
