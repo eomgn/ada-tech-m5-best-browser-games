@@ -5,7 +5,6 @@ import usuerOn from '../../Assets/Imagens/usuerOn.png';
 import logo from '../../Assets/Imagens/logo-best.png';
 
 
-
 const Header = () => {
   const [userInfo, setUserInfo] = useState(null);
 
@@ -30,7 +29,6 @@ const Header = () => {
 
   return (
     <>
-
         <header>
           <div className="header__content">
             <nav>
@@ -59,20 +57,15 @@ const Header = () => {
             </nav>
           </div>
         </header>
-         
     </>
   );
-}
+};
 
 export { Header };
 
 
-
-
-
-//import React from 'react'
+// import React from 'react'
 // import logo from '../../Assets/logo-best.png';
-
 // import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture} from './styles';
 
 // const Header = ({autenticado}) => {

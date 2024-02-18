@@ -1,0 +1,20 @@
+.comentario-unico-container {
+  width: 70%;
+  border: 2px solid #f7b84b;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 0;
+}
+
+.header-usuario {
+  display: flex;
+  flex-direction: row;
+}
+
+.nome-usuario {
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+}

@@ -1,0 +1,15 @@
+.tabela-container {
+  width: 1150px;
+  margin-top: 30px;
+}
+
+thead tr th {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  background-color: #f7b84b;
+  padding: 10px;
+}

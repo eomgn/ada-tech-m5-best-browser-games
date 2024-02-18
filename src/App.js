@@ -2,40 +2,37 @@ import "./App.css";
 import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GlobalStyle } from './Styles/global';
-import { Home } from './Paginas/Home/Home.jsx'
+import { GlobalStyle } from "./Styles/global";
+import { Home } from "./Paginas/Home/Home.jsx";
 import { Login } from "./Paginas/Login/Login.jsx";
 import { CriarConta } from "./Paginas/CriarConta/CriarConta.jsx";
 import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
 import { AlteracaoCadastro } from './Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx';
+import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
 
 function App() {
-
   return (
-    
     <div className="App">
-
       <BrowserRouter>
         <GlobalStyle />
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/criar-conta" element={<CriarConta />} />
-            <Route path="/recuperar-senha" element={<RecuperarSenha />} />
-            <Route path="/descricao-jogo" element={<DescricaoJogo />} />
-            <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
-        </Routes >
-      </BrowserRouter>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/criar-conta" element={<CriarConta />} />
+          <Route path="/recuperar-senha" element={<RecuperarSenha />} />
+          <Route path="/game" element={<ListaJogo />} />
+          <Route path="/game/:id" element={<DescricaoJogo />} />
+          <Route path="/descricao-jogo" element={<DescricaoJogo />} />
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />            
+        </Routes>
 
+      </BrowserRouter>
     </div>
   );
 }
 
 export default App;
-
-
-
 
 // import "./App.css";
 // import Formulario from "./Componentes/Formulario.jsx";
