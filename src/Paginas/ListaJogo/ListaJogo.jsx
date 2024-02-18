@@ -92,29 +92,26 @@ const ListaJogo = () => {
   }
   return (
     <>
+
       <Header />
-      <div className="lista-jogo-container">
-        <div className="barra-de-pesquisa-container">
-          <SearchSortBar onClick={handleClickSearch}>
-            <InputBar
-              type="text"
-              searchTerm={searchTerm}
-              placeholder="Pesquisar . . ."
-              onChange={handleSearchTerm}
-            />
-            <Dropdown
-              value={category}
-              onChange={handleChangeCategory}
-              options={categories}
-            />
-          </SearchSortBar>
-        </div>
-        <div className="tabela-de-jogo-container">
-          <Table>
-            <TableContent content={game} />
-          </Table>
-        </div>
-      </div>
+
+      <body>
+          <div className="body__content--table">
+            <div className="body__content--table--topo">
+              <SearchSortBar onClick={handleClickSearch}>
+                <InputBar type="text" searchTerm={searchTerm} placeholder="Pesquisar jogo" onChange={handleSearchTerm} />
+                <Dropdown value={category} onChange={handleChangeCategory} options={categories} />
+              </SearchSortBar>
+            </div>
+
+            <div className="body__content--table--base">
+              <Table>
+                <TableContent content={game} />
+              </Table>
+            </div>
+          </div>
+      </body>
+
     </>
   );
 };

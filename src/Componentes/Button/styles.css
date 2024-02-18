@@ -9,6 +9,7 @@ button {
     text-align: center;
     margin: 0 auto;
     margin-top: 50px;
+    cursor: pointer;
 }
 
 button::after {
@@ -22,37 +23,3 @@ button::after {
     height: calc(100% + 10px);
     border-radius: 22px;
 }
-
-
-
-
-
-/* import styled, { css } from 'styled-components';
-
-export const ButtonContainer = styled.button`
-    background: #565656;
-    border-radius: 22px;
-    position: relative;
-    color: #000000;
-    padding: 2px 12px;
-    width: 50%;
-    text-align: center;
-    margin: 0 auto;
-
-    ${({ variant }) => variant !== "primary" && css`
-        min-width: 67px;
-        height: 33px;
-        background: #f7b84b;
-
-        &::after {
-            content: '';
-            position: absolute;
-            border: 1px solid #f7b84b;
-            top: -5px;
-            left: -6px;
-            width: calc(100% + 10px);
-            height: calc(100% + 10px);
-            border-radius: 22px;
-        }
-    `}
-`; */
