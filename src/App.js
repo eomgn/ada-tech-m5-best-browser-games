@@ -8,6 +8,7 @@ import { Login } from "./Paginas/Login/Login.jsx";
 import { CriarConta } from "./Paginas/CriarConta/CriarConta.jsx";
 import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
+import { AlteracaoCadastro } from './Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Route path="/criar-conta" element={<CriarConta />} />
             <Route path="/recuperar-senha" element={<RecuperarSenha />} />
             <Route path="/descricao-jogo" element={<DescricaoJogo />} />
+            <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
         </Routes >
       </BrowserRouter>
 

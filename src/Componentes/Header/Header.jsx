@@ -13,10 +13,6 @@ const Header = () => {
     const email = sessionStorage.getItem('email');
     const isLoggedIn = name !== null;
 
-    console.log('nome:', name);
-    console.log('email:', email);
-    console.log('isLoggedIn:', isLoggedIn);
-
     if (isLoggedIn) {
       setUserInfo({ name, email });
     } else {
@@ -42,7 +38,9 @@ const Header = () => {
               <div className="user-info">
                 <span>{userInfo.name}</span>
                 <span>{userInfo.email}</span>
-                <img src={usuerOn} alt="Online" title="Online" />
+                <Link to="/alteracao-cadastro">
+                  <img src={usuerOn} alt="Online" title="Online" />
+                </Link>
               </div>
             ) : (
               <Link to="/login">Entrar</Link>
