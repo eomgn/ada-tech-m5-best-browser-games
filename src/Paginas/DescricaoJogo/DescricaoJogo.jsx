@@ -5,8 +5,10 @@ import "./styles.css";
 import { Header } from "../../Componentes/Header/Header.jsx";
 import { Title } from "../../Componentes/Title/Title.jsx";
 import { Text } from "../../Componentes/Text/Text.jsx";
+import Comentario from "../../Componentes/Comentario/Comentarios.jsx";
 
 const DescricaoJogo = () => {
+  // Possível puxar o game pelo id
   const gameData = [
     {
       _id: "1",
@@ -47,6 +49,52 @@ const DescricaoJogo = () => {
       videoURL: "string",
     },
   ];
+
+  const gameRating = [
+    {
+      _id: "1",
+      score: 4,
+      description: "string",
+      game: {
+        _id: "1",
+        name: "Wordle",
+        category: "Puzzle",
+      },
+      user: {
+        _id: "1",
+        name: "Nome1",
+      },
+    },
+    {
+      _id: "2",
+      score: 5,
+      description: "string",
+      game: {
+        _id: "1",
+        name: "Wordle",
+        category: "Puzzle",
+      },
+      user: {
+        _id: "2",
+        name: "Nome2",
+      },
+    },
+    {
+      _id: "3",
+      score: 4,
+      description: "string",
+      game: {
+        _id: "1",
+        name: "Wordle",
+        category: "Puzzle",
+      },
+      user: {
+        _id: "3",
+        name: "Nome3",
+      },
+    },
+  ];
+
   const { id } = useParams();
   const jogo = gameData.find((game) => game._id === id);
 
@@ -72,6 +120,9 @@ const DescricaoJogo = () => {
               <button className="button--assine">Avaliar</button>
             </Link>
           </div>
+        </div>
+        <div className="comentario-container">
+          <Comentario gameRating={gameRating} />
         </div>
       </body>
     </>
