@@ -21,8 +21,8 @@ const Header = () => {
             </figure>
             <div className="nav__button">
               <Link to="/">Home</Link>
-              <Link to="/login">Entrar</Link>
               <Link to="/game">Jogos</Link>
+              <Link to="/login">Entrar</Link>
             </div>
           </nav>
         </div>

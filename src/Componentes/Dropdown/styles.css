@@ -1,17 +1,29 @@
 .lista-categoria {
-  font-family: "Open Sans";
-  color: #f7b84b;
-  border-radius: 7px;
-  padding: 5px;
-  border: 2px solid #f7b84b;
-  outline: none;
-  background-color: transparent;
+  width: 300px;
   height: 44px;
-  font-weight: bold;
+  background-color: transparent;
+  margin-right: 15px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #7e7c79;
+  border-radius: 55px;
+  padding: 0px 20px;
+  border: 1px solid #ffffff;
+  outline: none;
   cursor: pointer;
 }
 
 .lista-categoria:focus {
-  background-color: black;
-  border-radius: 7px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  background-color: #f7b84b;;
+  border-radius: 55px;
+  padding: 0px 20px;
+  border: 1px solid #ffffff;
+  outline: none;
 }

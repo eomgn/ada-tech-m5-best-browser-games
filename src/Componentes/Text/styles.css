@@ -1,11 +1,10 @@
-p {
+.texto {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
     width: 100%;
-    margin-bottom: 20px;
+    margin: 10px 0px;
     color: #ffffff;
 }
-
