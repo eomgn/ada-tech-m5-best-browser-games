@@ -1,9 +1,20 @@
+import './styles.css';
+
 import React, { useState } from 'react';
 import { Header } from '../../Componentes/Header/Header.jsx';
 import { Title } from '../../Componentes/Title/Title.jsx';
 import { Text } from '../../Componentes/Text/Text.jsx';
+import { Input } from '../../Componentes/Input/Input.jsx';
+import { MdAccountCircle, MdEmail } from 'react-icons/md'
+import { useForm } from "react-hook-form";
 
 const AlteracaoCadastro = () => {
+
+  const { control, formState: { errors } } = useForm({
+    reValidateMode: 'onChange',
+    mode: 'onChange',
+    });
+
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
 
@@ -57,26 +68,31 @@ const AlteracaoCadastro = () => {
   };
 
   return (
-    <div className="page-container">
-      <Header />
+      <>
 
-      <div className="body__content">
-        <div className="body__content--text">
-          <Title title="Altere seu nome ou e-mail cadastrado" color="#f7b84b" />
-        </div>
-        <div className="body__content--form">
-          <Text text="Ficha de Cadastro" />
+      <div className="page-container">
+        
+        <Header />
 
-          <label htmlFor="newName">Novo Nome:</label>
-          <input type="text" id="newName" value={newName} onChange={handleNameChange} />
+        <div className="body__content">
+          <div className="body__content--text">
+            <Title title="Altere seu Nome ou E-mail cadastrado!" color="#f7b84b" />
+          </div>
+          <div className="body__content--form">
+            <Text text="Ficha de Cadastro" />
 
-          <label htmlFor="newEmail">Novo E-mail:</label>
-          <input type="text" id="newEmail" value={newEmail} onChange={handleEmailChange} />
+            <Input type="text" placeholder="Digite novo Nome" id="newName" name="newName" value={newName} leftIcon={<MdAccountCircle />} control={control} onChange={handleNameChange} rules={{ required: 'Nome é obrigatório' }} />
+            {errors.newName && <span>{errors.newName.message}</span>}
 
-          <button onClick={handleSubmit}>Enviar Alterações</button>
+            <Input type="text" placeholder="Digite novo E-mail" id="newEmail" name="newEmail" value={newEmail} leftIcon={<MdEmail />} control={control} onChange={handleEmailChange} rules={{ required: 'E-mail é obrigatório' }} />
+            {errors.newEmail && <span>{errors.newEmail.message}</span>}
+
+            <button onClick={handleSubmit}>Enviar Alterações</button>
+          </div>
         </div>
       </div>
-    </div>
+
+      </>
   );
 };
 
