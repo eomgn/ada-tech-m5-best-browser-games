@@ -8,6 +8,9 @@ import { Header } from "../../Componentes/Header/Header.jsx";
 import "./styles.css";
 
 const ListaJogo = () => {
+  /////////////////////////////////////////////////
+  //API
+  //Puxar todas a categorias
   const categories = [
     { _id: "5", name: "Ação" },
     { _id: "4", name: "Aventura" },
@@ -16,7 +19,7 @@ const ListaJogo = () => {
     { _id: "1", name: "Puzzle" },
     { _id: "6", name: "Shooter" },
   ];
-
+  //Puxar toda a lista de jogos
   const [gameData, setGameData] = useState([
     {
       _id: "1",
@@ -57,6 +60,7 @@ const ListaJogo = () => {
       videoURL: "string",
     },
   ]);
+  /////////////////////////////////////////////////
 
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");

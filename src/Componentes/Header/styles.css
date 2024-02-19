@@ -22,8 +22,36 @@ header .header__content nav {
     justify-content: space-between;
 }
 
+header .header__content nav .nav__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;    
+}
+
+header .header__content nav .user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center; 
+}
+
 header .header__content nav > figure > img {
     width: 32px;
+}
+
+header .header__content nav .nav__button .user-info .image-name {
+    width: 30px;
+}
+
+header .header__content nav .nav__button .user-name {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-size: 16px;
+    color: #f7b84b;
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
 }
 
 a {

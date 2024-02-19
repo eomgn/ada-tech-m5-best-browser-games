@@ -10,6 +10,8 @@ import BotaoAvaliar from "../../Componentes/BotaoAvaliar/BotaoAvaliar.jsx";
 import FormularioAvaliar from "../../Componentes/FormularioAvaliar/FormularioAvaliar.jsx";
 
 const DescricaoJogo = () => {
+  /////////////////////////////////////////////////
+  //API
   // Possível puxar o game pelo id
   const gameData = [
     {
@@ -51,7 +53,7 @@ const DescricaoJogo = () => {
       videoURL: "string",
     },
   ];
-
+  // Puxar as avaliação do jogo pelo id do jogo
   const gameRating = [
     {
       _id: "1",
@@ -96,6 +98,7 @@ const DescricaoJogo = () => {
       },
     },
   ];
+  /////////////////////////////////////////////////
 
   const { id } = useParams();
   const jogo = gameData.find((game) => game._id === id);
@@ -103,7 +106,7 @@ const DescricaoJogo = () => {
   /////////////////////////////////////////////////
   // Lógica condicional do botão Avaliar
   // Ler se o usuário está logado
-  const [condicaoLogado, setCondicaoLogado] = useState(true);
+  const [condicaoLogado, setCondicaoLogado] = useState(false);
   /////////////////////////////////////////////////
 
   const [campoAvaliacao, setCampoAvaliacao] = useState(false);

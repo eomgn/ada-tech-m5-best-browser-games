@@ -27,9 +27,14 @@ const Login = () => {
                 email: formData.email,
                 password: formData.password,
             });
-
+            
             if (response.status === 201) {
-                navigate('/descricao-jogo');
+                sessionStorage.setItem('accessToken', response.data.token)
+                sessionStorage.setItem('user_id', response.data.user_id)
+                sessionStorage.setItem('nome', response.data.name)
+                sessionStorage.setItem('email', response.data.email)
+
+                navigate('/game');
             } else {
                 alert('Usuário ou senha inválido');
             }
