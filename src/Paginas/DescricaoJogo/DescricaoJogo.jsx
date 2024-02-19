@@ -1,13 +1,17 @@
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./styles.css";
 
 import { Header } from "../../Componentes/Header/Header.jsx";
 import { Title } from "../../Componentes/Title/Title.jsx";
 import { Text } from "../../Componentes/Text/Text.jsx";
-import Comentario from "../../Componentes/Comentario/Comentarios.jsx";
+import Comentario from "../../Componentes/Comentario/Comentario.jsx";
+import BotaoAvaliar from "../../Componentes/BotaoAvaliar/BotaoAvaliar.jsx";
+import FormularioAvaliar from "../../Componentes/FormularioAvaliar/FormularioAvaliar.jsx";
 
 const DescricaoJogo = () => {
+  /////////////////////////////////////////////////
+  //API
   // Possível puxar o game pelo id
   const gameData = [
     {
@@ -49,7 +53,7 @@ const DescricaoJogo = () => {
       videoURL: "string",
     },
   ];
-
+  // Puxar as avaliação do jogo pelo id do jogo
   const gameRating = [
     {
       _id: "1",
@@ -94,13 +98,22 @@ const DescricaoJogo = () => {
       },
     },
   ];
+  /////////////////////////////////////////////////
 
   const { id } = useParams();
   const jogo = gameData.find((game) => game._id === id);
 
-  if (!jogo) {
-    return <div>Jogo não encontrado</div>;
-  }
+  /////////////////////////////////////////////////
+  // Lógica condicional do botão Avaliar
+  // Ler se o usuário está logado
+  const [condicaoLogado, setCondicaoLogado] = useState(false);
+  /////////////////////////////////////////////////
+
+  const [campoAvaliacao, setCampoAvaliacao] = useState(false);
+
+  const handleClick = () => {
+    setCampoAvaliacao(!campoAvaliacao);
+  };
 
   return (
     <>
@@ -116,11 +129,10 @@ const DescricaoJogo = () => {
           <div className="body__content--text">
             <Title title={jogo.name} color="#f7b84b" />
             <Text text={jogo.description} />
-            <Link to="/login">
-              <button className="button--assine">Avaliar</button>
-            </Link>
+            <BotaoAvaliar condicao={condicaoLogado} onClick={handleClick} />
           </div>
         </div>
+        <div>{campoAvaliacao && <FormularioAvaliar />}</div>
         <div className="comentario-container">
           <Comentario gameRating={gameRating} />
         </div>

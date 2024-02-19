@@ -1,0 +1,28 @@
+.botao-habilitado {
+  background: #f7b84b;
+  border-radius: 22px;
+  position: relative;
+  color: #000000;
+  padding: 2px 12px;
+  width: 50%;
+  height: 33px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.botao-desabilitado {
+  background: #f7b84b;
+  border-radius: 22px;
+  position: relative;
+  color: #000000;
+  padding: 2px 12px;
+  width: 50%;
+  height: 33px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  opacity: 0.5;
+  cursor: not-allowed;
+}

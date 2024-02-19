@@ -13,7 +13,7 @@ const Comentario = (props) => {
           <span>{rating.score}</span>
         </div>
       </div>
-      <div>
+      <div className="jogo-descricao">
         <Text text={rating.description} />
       </div>
     </div>

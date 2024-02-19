@@ -8,7 +8,19 @@ import { Header } from "../../Componentes/Header/Header.jsx";
 import "./styles.css";
 
 const ListaJogo = () => {
-  const gameData = [
+  /////////////////////////////////////////////////
+  //API
+  //Puxar todas a categorias
+  const categories = [
+    { _id: "5", name: "Ação" },
+    { _id: "4", name: "Aventura" },
+    { _id: "3", name: "Estratégia" },
+    { _id: "2", name: "Party" },
+    { _id: "1", name: "Puzzle" },
+    { _id: "6", name: "Shooter" },
+  ];
+  //Puxar toda a lista de jogos
+  const [gameData, setGameData] = useState([
     {
       _id: "1",
       name: "Wordle",
@@ -47,20 +59,12 @@ const ListaJogo = () => {
         "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
       videoURL: "string",
     },
-  ];
-
-  const categories = [
-    { _id: "5", name: "Ação" },
-    { _id: "4", name: "Aventura" },
-    { _id: "3", name: "Estratégia" },
-    { _id: "2", name: "Party" },
-    { _id: "1", name: "Puzzle" },
-    { _id: "6", name: "Shooter" },
-  ];
+  ]);
+  /////////////////////////////////////////////////
 
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [game, setGame] = useState(gameData);
+  const [displayedGame, setDisplayedGame] = useState(gameData);
 
   function handleChangeCategory(event) {
     setCategory(event.target.value);
@@ -70,48 +74,55 @@ const ListaJogo = () => {
     setSearchTerm(event.target.value);
   }
 
-  const filterByCategory = () => {
+  const filterByCategory = (games) => {
     return category === ""
-      ? game
-      : game.filter((game) => game.category.name === category);
+      ? games
+      : games.filter((game) => game.category.name === category);
   };
 
-  const filterBySearchTerm = (selectedGameByCategory) => {
+  const filterBySearchTerm = (games) => {
     return searchTerm === ""
-      ? selectedGameByCategory
-      : selectedGameByCategory.filter((game) =>
+      ? games
+      : games.filter((game) =>
           game.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
   };
 
   function handleClickSearch() {
-    const selectedGameByCategory = filterByCategory();
+    const selectedGameByCategory = filterByCategory(gameData);
     const selectedGameByTerm = filterBySearchTerm(selectedGameByCategory);
 
-    setGame(selectedGameByTerm);
+    setDisplayedGame(selectedGameByTerm);
   }
   return (
     <>
-
       <Header />
 
       <body>
-          <div className="body__content--table">
-            <div className="body__content--table--topo">
-              <SearchSortBar onClick={handleClickSearch}>
-                <InputBar type="text" searchTerm={searchTerm} placeholder="Pesquisar jogo" onChange={handleSearchTerm} />
-                <Dropdown value={category} onChange={handleChangeCategory} options={categories} />
-              </SearchSortBar>
-            </div>
-
-            <div className="body__content--table--base">
-              <Table>
-                <TableContent content={game} />
-              </Table>
-            </div>
+        <div className="body__content--table">
+          <div className="body__content--table--topo">
+            <SearchSortBar onClick={handleClickSearch}>
+              <InputBar
+                type="text"
+                searchTerm={searchTerm}
+                placeholder="Pesquisar jogo"
+                onChange={handleSearchTerm}
+              />
+              <Dropdown
+                value={category}
+                onChange={handleChangeCategory}
+                options={categories}
+              />
+            </SearchSortBar>
           </div>
-      </body>
 
+          <div className="body__content--table--base">
+            <Table>
+              <TableContent content={displayedGame} />
+            </Table>
+          </div>
+        </div>
+      </body>
     </>
   );
 };
