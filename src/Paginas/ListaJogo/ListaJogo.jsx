@@ -75,7 +75,7 @@ const ListaJogo = () => {
   }
 
   const filterByCategory = (games) => {
-    return category === ""
+    return category === "" || category === "todos"
       ? games
       : games.filter((game) => game.category.name === category);
   };
