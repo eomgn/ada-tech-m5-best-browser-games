@@ -1,0 +1,51 @@
+.avaliar-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.nota-jogo-avaliar,
+.comentario-jogo-avaliar {
+  margin-left: 30%;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.nota-jogo-avaliar {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+}
+
+.nota-jogo-avaliar input {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  background-color: transparent; /* Define o fundo do input como transparente */
+  border: 1px solid #f7b84b; /* Define a cor da borda do input */
+}
+
+.comentario-jogo-avaliar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.comentario-jogo-avaliar textarea {
+  margin-top: 5px;
+  height: 100px;
+  width: 300px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  padding: 5px;
+  align-self: flex-start;
+}
+
+.botao-enviar {
+  width: 150px;
+}

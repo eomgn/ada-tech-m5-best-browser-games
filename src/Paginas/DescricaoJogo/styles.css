@@ -34,6 +34,11 @@
   margin: 20px;
 }
 
+.botao--avaliar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .comentario-container {
   display: flex;
   flex-direction: column;
