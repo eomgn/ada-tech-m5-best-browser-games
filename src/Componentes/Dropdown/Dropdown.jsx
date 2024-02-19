@@ -12,6 +12,7 @@ const Dropdown = (props) => {
       <option disabled hidden value="">
         Por categoria
       </option>
+      <option value="todos">Exibir todos</option>
       {renderedCategory}
     </select>
   );
