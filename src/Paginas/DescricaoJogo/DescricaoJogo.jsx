@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./styles.css";
 
@@ -106,10 +106,16 @@ const DescricaoJogo = () => {
   /////////////////////////////////////////////////
   // Lógica condicional do botão Avaliar
   // Ler se o usuário está logado
-  const [condicaoLogado, setCondicaoLogado] = useState(true);
-  /////////////////////////////////////////////////
-
+  const [condicaoLogado, setCondicaoLogado] = useState(false);
   const [campoAvaliacao, setCampoAvaliacao] = useState(false);
+  const [comentario, setComentario] = useState("");
+
+  useEffect(() => {
+    const name = sessionStorage.getItem("nome");
+    const userId = sessionStorage.getItem("user_id");
+    const isLoggedIn = name !== null;
+    setCondicaoLogado(isLoggedIn);
+  }, []);
 
   const handleClick = () => {
     setCampoAvaliacao(!campoAvaliacao);
