@@ -10,102 +10,39 @@ import BotaoAvaliar from "../../Componentes/BotaoAvaliar/BotaoAvaliar.jsx";
 import FormularioAvaliar from "../../Componentes/FormularioAvaliar/FormularioAvaliar.jsx";
 
 const DescricaoJogo = () => {
-  /////////////////////////////////////////////////
-  //API
-  // Possível puxar o game pelo id
-  const gameData = [
-    {
-      _id: "1",
-      name: "Wordle",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
-      videoURL: "string",
-    },
-    {
-      _id: "2",
-      name: "GeoGuessr",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
-      videoURL: "string",
-    },
-    {
-      _id: "3",
-      name: "Gartic Phone",
-      category: {
-        _id: "2",
-        name: "Party",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
-      videoURL: "string",
-    },
-  ];
-  // Puxar as avaliação do jogo pelo id do jogo
-  const gameRating = [
-    {
-      _id: "1",
-      score: 4,
-      description: "string",
-      game: {
-        _id: "1",
-        name: "Wordle",
-        category: "Puzzle",
-      },
-      user: {
-        _id: "1",
-        name: "Nome1",
-      },
-    },
-    {
-      _id: "2",
-      score: 5,
-      description: "string",
-      game: {
-        _id: "1",
-        name: "Wordle",
-        category: "Puzzle",
-      },
-      user: {
-        _id: "2",
-        name: "Nome2",
-      },
-    },
-    {
-      _id: "3",
-      score: 4,
-      description: "string",
-      game: {
-        _id: "1",
-        name: "Wordle",
-        category: "Puzzle",
-      },
-      user: {
-        _id: "3",
-        name: "Nome3",
-      },
-    },
-  ];
-  /////////////////////////////////////////////////
-
   const { id } = useParams();
-  const jogo = gameData.find((game) => game._id === id);
 
-  /////////////////////////////////////////////////
-  // Lógica condicional do botão Avaliar
-  // Ler se o usuário está logado
+  const [gameData, setGameData] = useState(null);
+  const [gameRating, setGameRating] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [gameResponse, gameRatingResponse] = await Promise.all([
+          fetch(`https://api-best-browser-games.vercel.app/games/${id}`),
+          fetch(
+            `https://api-best-browser-games.vercel.app/games/${id}/ratings`
+          ),
+        ]);
+
+        if (!gameResponse.ok || !gameRatingResponse.ok) {
+          throw new Error("Erro na requisição da API");
+        }
+
+        const [gamesResult, gameRatingResult] = await Promise.all([
+          gameResponse.json(),
+          gameRatingResponse.json(),
+        ]);
+
+        setGameData(gamesResult);
+        setGameRating(gameRatingResult);
+      } catch (error) {
+        console.error("Erro: ", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const [condicaoLogado, setCondicaoLogado] = useState(false);
   const [campoAvaliacao, setCampoAvaliacao] = useState(false);
   const [comentario, setComentario] = useState("");
@@ -125,24 +62,32 @@ const DescricaoJogo = () => {
     <>
       <Header />
 
-      <body>
-        <div className="body__content">
-          <div className="body__content--jogo">
-            <figure>
-              <img src={jogo.imageURL} alt={jogo.name} title={jogo.name} />
-            </figure>
+      {gameData ? (
+        <body>
+          <div className="body__content">
+            <div className="body__content--jogo">
+              <figure>
+                <img
+                  src={gameData.imageURL}
+                  alt={gameData.name}
+                  title={gameData.name}
+                />
+              </figure>
+            </div>
+            <div className="body__content--text">
+              <Title title={gameData.name} color="#f7b84b" />
+              <Text text={gameData.description} />
+              <BotaoAvaliar condicao={condicaoLogado} onClick={handleClick} />
+            </div>
           </div>
-          <div className="body__content--text">
-            <Title title={jogo.name} color="#f7b84b" />
-            <Text text={jogo.description} />
-            <BotaoAvaliar condicao={condicaoLogado} onClick={handleClick} />
+          <div>{campoAvaliacao && <FormularioAvaliar />}</div>
+          <div className="comentario-container">
+            <Comentario gameRating={gameRating} />
           </div>
-        </div>
-        <div>{campoAvaliacao && <FormularioAvaliar />}</div>
-        <div className="comentario-container">
-          <Comentario gameRating={gameRating} />
-        </div>
-      </body>
+        </body>
+      ) : (
+        <p>Carregando...</p>
+      )}
     </>
   );
 };
