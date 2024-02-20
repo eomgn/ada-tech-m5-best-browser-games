@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Table from "../../Componentes/Table/Table.jsx";
 import TableContent from "../../Componentes/TableContent/TableContent.jsx";
 import SearchSortBar from "../../Componentes/SearchSortBar/SearchSortBar.jsx";
@@ -11,60 +11,41 @@ const ListaJogo = () => {
   /////////////////////////////////////////////////
   //API
   //Puxar todas a categorias
-  const categories = [
-    { _id: "5", name: "Ação" },
-    { _id: "4", name: "Aventura" },
-    { _id: "3", name: "Estratégia" },
-    { _id: "2", name: "Party" },
-    { _id: "1", name: "Puzzle" },
-    { _id: "6", name: "Shooter" },
-  ];
   //Puxar toda a lista de jogos
-  const [gameData, setGameData] = useState([
-    {
-      _id: "1",
-      name: "Wordle",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://pixelpoppers.com/review/wordle/wordle_hudf386a76d8eded9bc6ac7252d85f5bb9_26477_200x200_resize_catmullrom_2.png",
-      videoURL: "string",
-    },
-    {
-      _id: "2",
-      name: "GeoGuessr",
-      category: {
-        _id: "1",
-        name: "Puzzle",
-      },
-      description: "string",
-      url: "string",
-      imageURL: "https://logowik.com/content/uploads/images/geoguessr3570.jpg",
-      videoURL: "string",
-    },
-    {
-      _id: "3",
-      name: "Gartic Phone",
-      category: {
-        _id: "2",
-        name: "Party",
-      },
-      description: "string",
-      url: "string",
-      imageURL:
-        "https://logos-world.net/wp-content/uploads/2022/04/Gartic-Phone-Logo-700x394.png",
-      videoURL: "string",
-    },
-  ]);
+  const [gameData, setGameData] = useState(null);
+  const [categories, setCategories] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [gamesResponse, categoriesResponse] = await Promise.all([
+          fetch("https://api-best-browser-games.vercel.app/games"),
+          fetch("https://api-best-browser-games.vercel.app/categories"),
+        ]);
+
+        if (!gamesResponse.ok || !categoriesResponse.ok) {
+          throw new Error("Erro na requisição da API");
+        }
+
+        const [gamesResult, categoriesResult] = await Promise.all([
+          gamesResponse.json(),
+          categoriesResponse.json(),
+        ]);
+
+        setGameData(gamesResult);
+        setDisplayedGame(gamesResult);
+        setCategories(categoriesResult);
+      } catch (error) {
+        console.error("Erro: ", error);
+      }
+    };
+    fetchData();
+  }, []);
   /////////////////////////////////////////////////
 
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [displayedGame, setDisplayedGame] = useState(gameData);
+  const [displayedGame, setDisplayedGame] = useState([]);
 
   function handleChangeCategory(event) {
     setCategory(event.target.value);
@@ -100,27 +81,32 @@ const ListaJogo = () => {
 
       <body>
         <div className="body__content--table">
-          <div className="body__content--table--topo">
-            <SearchSortBar onClick={handleClickSearch}>
-              <InputBar
-                type="text"
-                searchTerm={searchTerm}
-                placeholder="Pesquisar jogo"
-                onChange={handleSearchTerm}
-              />
-              <Dropdown
-                value={category}
-                onChange={handleChangeCategory}
-                options={categories}
-              />
-            </SearchSortBar>
-          </div>
-
-          <div className="body__content--table--base">
-            <Table>
-              <TableContent content={displayedGame} />
-            </Table>
-          </div>
+          {gameData ? (
+            <>
+              <div className="body__content--table--topo">
+                <SearchSortBar onClick={handleClickSearch}>
+                  <InputBar
+                    type="text"
+                    searchTerm={searchTerm}
+                    placeholder="Pesquisar jogo"
+                    onChange={handleSearchTerm}
+                  />
+                  <Dropdown
+                    value={category}
+                    onChange={handleChangeCategory}
+                    options={categories}
+                  />
+                </SearchSortBar>
+              </div>
+              <div className="body__content--table--base">
+                <Table>
+                  <TableContent content={displayedGame} />
+                </Table>
+              </div>
+            </>
+          ) : (
+            <p>Carregando...</p>
+          )}
         </div>
       </body>
     </>

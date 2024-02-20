@@ -106,7 +106,7 @@ const DescricaoJogo = () => {
   /////////////////////////////////////////////////
   // Lógica condicional do botão Avaliar
   // Ler se o usuário está logado
-  const [condicaoLogado, setCondicaoLogado] = useState(false);
+  const [condicaoLogado, setCondicaoLogado] = useState(true);
   /////////////////////////////////////////////////
 
   const [campoAvaliacao, setCampoAvaliacao] = useState(false);
