@@ -107,9 +107,15 @@ const DescricaoJogo = () => {
   // Lógica condicional do botão Avaliar
   // Ler se o usuário está logado
   const [condicaoLogado, setCondicaoLogado] = useState(false);
-  /////////////////////////////////////////////////
-
   const [campoAvaliacao, setCampoAvaliacao] = useState(false);
+  const [comentario, setComentario] = useState("");
+
+  useEffect(() => {
+    const name = sessionStorage.getItem('nome');
+    const userId = sessionStorage.getItem('user_id');
+    const isLoggedIn = name !== null;
+    setCondicaoLogado(isLoggedIn);
+  }, []);
 
   const handleClick = () => {
     setCampoAvaliacao(!campoAvaliacao);
