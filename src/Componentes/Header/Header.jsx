@@ -18,7 +18,7 @@ const Header = () => {
     } else {
       setUserInfo(null);
     }
-  }, []);
+  }, [userInfo]);
 
   const handleLogout = () => {
     sessionStorage.removeItem('nome');
