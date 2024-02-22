@@ -7,7 +7,9 @@ const Comentario = (props) => {
     <div className="comentario-unico-container" key={rating._id}>
       <div className="header-usuario">
         <div>
-          <p className="nome-usuario">{rating.user.name}</p>
+        {rating.user && rating.user.name && (
+            <p className="nome-usuario">{rating.user.name}</p>
+          )}
         </div>
         <div>
           <span>{rating.score}</span>

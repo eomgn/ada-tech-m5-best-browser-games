@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./styles.css";
 
-const FormularioAvaliar = () => {
+
+const FormularioAvaliar = ({ onSubmit }) => {
   const [nota, setNota] = useState(1);
   const [comentario, setComentario] = useState("");
 
@@ -15,6 +16,13 @@ const FormularioAvaliar = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const novoComentario = {
+      score: nota,
+      description: comentario,
+    };
+    onSubmit(novoComentario);
+    setNota(1);
+    setComentario("");
   };
 
   return (
@@ -40,5 +48,6 @@ const FormularioAvaliar = () => {
     </form>
   );
 };
+
 
 export default FormularioAvaliar;
