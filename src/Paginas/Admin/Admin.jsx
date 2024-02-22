@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../Assets/Imagens/banner-best.png';
 import { Header } from '../../Componentes/Header/Header.jsx';
 import { Title } from '../../Componentes/Title/Title.jsx';
 import { Text } from '../../Componentes/Text/Text.jsx';
