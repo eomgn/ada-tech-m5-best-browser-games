@@ -1,49 +1,29 @@
 import "./styles.css";
 
 import { Header } from "../../Componentes/Header/Header.jsx";
-import ListaItensAdm from "../../Componentes/ListaItensAdm/ListaItensAdm.jsx";
 import ItensListaAdm from "../../Componentes/ItensListaAdm/ItensListaAdm.jsx";
-import { Title } from "../../Componentes/Title/Title.jsx";
-import { Text } from "../../Componentes/Text/Text.jsx";
-import { Input } from "../../Componentes/Input/Input.jsx";
-import { Button } from "../../Componentes/Button/Button.jsx";
-import {
-  MdAccountCircle,
-  MdEmail,
-  MdLock,
-  MdOutlineCalendarMonth,
-  MdMap,
-} from "react-icons/md";
-import { useForm } from "react-hook-form";
-import { api } from "../../Services/api";
-import { useNavigate } from "react-router-dom";
-import { format } from "date-fns";
 import { useState, useEffect } from "react";
 
 const Adm = () => {
   const [gameData, setGameData] = useState(null);
   const [categories, setCategories] = useState(null);
   const [activeTab, setActiveTab] = useState("jogo");
+  const [categoryInput, setCategoryInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [gamesResponse, categoriesResponse] = await Promise.all([
-          fetch("https://api-best-browser-games.vercel.app/games"),
-          fetch("https://api-best-browser-games.vercel.app/categories"),
-        ]);
+        const gamesResponse = await fetch(
+          "https://api-best-browser-games.vercel.app/games"
+        );
 
-        if (!gamesResponse.ok || !categoriesResponse.ok) {
+        if (!gamesResponse.ok) {
           throw new Error("Erro na requisição da API");
         }
 
-        const [gamesResult, categoriesResult] = await Promise.all([
-          gamesResponse.json(),
-          categoriesResponse.json(),
-        ]);
+        const gamesResult = await gamesResponse.json();
 
         setGameData(gamesResult);
-        setCategories(categoriesResult);
       } catch (error) {
         console.error("Erro: ", error);
       }
@@ -51,8 +31,68 @@ const Adm = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const categoriesResponse = await fetch(
+          "https://api-best-browser-games.vercel.app/categories"
+        );
+
+        if (!categoriesResponse.ok) {
+          throw new Error("Erro na requisição da API");
+        }
+
+        const categoriesResult = await categoriesResponse.json();
+
+        setCategories(categoriesResult);
+      } catch (error) {
+        console.error("Erro: ", error);
+      }
+    };
+    fetchData();
+  }, [categories]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZjNWZjMGU5MjdiODI4MzJjZTczMSIsIm5hbWUiOiJUZXN0ZSBEb3plIiwiZW1haWwiOiJ0ZXN0ZTEyQGdtYWlsLmNvbSIsImJpcnRoRGF0ZSI6IjE5NzAtMDEtMDFUMDg6Mzg6NDEuOTc5WiIsImNvdW50cnkiOiJCcmFzaWwiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDg1NzA4MjIsImV4cCI6MTcwODY1NzIyMn0.zzMAaCajzPSvuOSu8Wrs6SiQbWGK4YRcbQ4v-8qUa6U";
+
+    const data = {
+      name: categoryInput,
+    };
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    };
+
+    try {
+      const response = await fetch(
+        "https://api-best-browser-games.vercel.app/categories",
+        requestOptions
+      );
+
+      if (response.ok) {
+        alert("Categoria adicionada com sucesso");
+      } else {
+        alert("Erro ao criar categoria");
+      }
+    } catch (error) {
+      console.error("Erro ao criar categoria", error);
+    }
+  };
+
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
+  };
+
+  const handleInputCategory = (event) => {
+    setCategoryInput(event.target.value);
   };
 
   return (
@@ -80,19 +120,23 @@ const Adm = () => {
                 <input type="text" placeholder="Insira Jogo" />
                 <button>Adicionar</button>
               </div>
-              <ListaItensAdm>
-                <ItensListaAdm content={gameData} />
-              </ListaItensAdm>
+              <ItensListaAdm content={gameData} />
             </div>
           ) : (
             <div>
-              <div>
-                <input type="text" placeholder="Insira Categoria" />
-                <button>Adicionar</button>
-              </div>
-              <ListaItensAdm>
-                <ItensListaAdm content={categories} />
-              </ListaItensAdm>
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  value={categoryInput}
+                  id="category"
+                  name="category"
+                  placeholder="Insira Categoria"
+                  onChange={handleInputCategory}
+                  rules={{ required: "Insira uma categoria" }}
+                />
+                <button type="submit">Adicionar</button>
+              </form>
+              <ItensListaAdm content={categories} />
             </div>
           )}
         </div>
