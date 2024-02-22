@@ -1,4 +1,5 @@
 import React from 'react';
+import { jwtDecode } from 'jwt-decode';
 import './styles.css';
 
 import { Header } from '../../Componentes/Header/Header.jsx';
@@ -27,21 +28,26 @@ const Login = () => {
                 email: formData.email,
                 password: formData.password,
             });
-            
+
             if (response.status === 201) {
-                sessionStorage.setItem('accessToken', response.data.token)
-                sessionStorage.setItem('user_id', response.data.user_id)
-                sessionStorage.setItem('nome', response.data.name)
-                sessionStorage.setItem('email', response.data.email)
+                const decodedToken = jwtDecode(response.data.token);
+                console.log('Decoded Token:', decodedToken);
+                if (decodedToken && decodedToken.id) {
+                    sessionStorage.setItem('accessToken', response.data.token);
+                    sessionStorage.setItem('user_id', decodedToken.id);
+                    sessionStorage.setItem('nome', decodedToken.name);
+                    sessionStorage.setItem('email', decodedToken.email);
 
                 navigate('/game');
             } else {
                 alert('Usuário ou senha inválido');
-            }
+            }}
         } catch (error) {
+            console.error('Erro no login:', error);
             alert('Usuário ou senha inválido');
         }
-    };    
+    }; 
+  
 
     return (
         <>
