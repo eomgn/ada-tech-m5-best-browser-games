@@ -37,6 +37,7 @@ const Login = () => {
                     sessionStorage.setItem('user_id', decodedToken.id);
                     sessionStorage.setItem('nome', decodedToken.name);
                     sessionStorage.setItem('email', decodedToken.email);
+                    sessionStorage.setItem('roles', JSON.stringify(decodedToken.roles));
 
                 navigate('/game');
             } else {
