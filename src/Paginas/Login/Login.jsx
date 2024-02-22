@@ -31,7 +31,6 @@ const Login = () => {
 
             if (response.status === 201) {
                 const decodedToken = jwtDecode(response.data.token);
-                console.log('Decoded Token:', decodedToken);
                 if (decodedToken && decodedToken.id) {
                     sessionStorage.setItem('accessToken', response.data.token);
                     sessionStorage.setItem('user_id', decodedToken.id);
