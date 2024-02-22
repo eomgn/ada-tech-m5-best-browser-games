@@ -8,10 +8,6 @@ import { Header } from "../../Componentes/Header/Header.jsx";
 import "./styles.css";
 
 const ListaJogo = () => {
-  /////////////////////////////////////////////////
-  //API
-  //Puxar todas a categorias
-  //Puxar toda a lista de jogos
   const [gameData, setGameData] = useState(null);
   const [categories, setCategories] = useState(null);
 
@@ -41,7 +37,6 @@ const ListaJogo = () => {
     };
     fetchData();
   }, []);
-  /////////////////////////////////////////////////
 
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");

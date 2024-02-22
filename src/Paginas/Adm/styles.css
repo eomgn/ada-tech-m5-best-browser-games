@@ -1,0 +1,15 @@
+.adm-botao-container {
+  margin: 100px 0;
+}
+
+.jogo-adm-botao,
+.categoria-adm-botao {
+  width: 200px;
+  margin: 20px;
+}
+
+.adm-container {
+  margin: auto;
+  width: 80%;
+  border: 1px solid #f7b84b;
+}
