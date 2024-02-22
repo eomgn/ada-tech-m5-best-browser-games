@@ -11,6 +11,7 @@ import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
 import { AlteracaoCadastro } from "./Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx";
 import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
 import { Adm } from "./Paginas/Adm/Adm.jsx";
+import { Admin } from "./Paginas/Admin/Admin.jsx";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/descricao-jogo" element={<DescricaoJogo />} />
           <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
           <Route path="/adm" element={<Adm />} />
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>

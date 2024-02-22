@@ -6,22 +6,28 @@ import logo from "../../Assets/Imagens/logo-best.png";
 
 const Header = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const name = sessionStorage.getItem("nome");
     const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
     const isLoggedIn = name !== null;
 
     if (isLoggedIn) {
-      setUserInfo({ name, email });
+      const userRoles = roles ? JSON.parse(roles) : [];
+      setUserInfo({ name, email, roles: userRoles });
+      setIsAdmin(userRoles && userRoles.includes("admin"));
     } else {
       setUserInfo(null);
+      setIsAdmin(false);
     }
-  }, [userInfo]);
+  }, [isAdmin]);
 
   const handleLogout = () => {
     sessionStorage.removeItem("nome");
     sessionStorage.removeItem("email");
+    sessionStorage.removeItem("roles");
   };
 
   return (
@@ -42,7 +48,7 @@ const Header = () => {
             <div className="nav__button">
               <Link to="/">Home</Link>
               <Link to="/game">Jogos</Link>
-
+              {isAdmin && <Link to="/admin">Admin</Link>}
               {userInfo ? (
                 <div className="user-info">
                   <Link to="/login" onClick={handleLogout}>
