@@ -48,7 +48,7 @@ const Header = () => {
             <div className="nav__button">
               <Link to="/">Home</Link>
               <Link to="/game">Jogos</Link>
-              {isAdmin && <Link to="/admin">Admin</Link>}
+              {isAdmin && <Link to="/adm">ADM</Link>}
               {userInfo ? (
                 <div className="user-info">
                   <Link to="/login" onClick={handleLogout}>
@@ -71,7 +71,6 @@ const Header = () => {
               ) : (
                 <Link to="/login">Entrar</Link>
               )}
-              <Link to="/adm">ADM</Link>
             </div>
           </nav>
         </div>

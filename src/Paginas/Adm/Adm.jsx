@@ -3,6 +3,7 @@ import "./styles.css";
 import { Header } from "../../Componentes/Header/Header.jsx";
 import ItensListaAdm from "../../Componentes/ItensListaAdm/ItensListaAdm.jsx";
 import { useState, useEffect } from "react";
+import FormJogo from "../../Componentes/FormJogo/FormJogo.jsx";
 
 const Adm = () => {
   const [gameData, setGameData] = useState(null);
@@ -29,7 +30,7 @@ const Adm = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [gameData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,11 +53,10 @@ const Adm = () => {
     fetchData();
   }, [categories]);
 
-  const handleSubmit = async (event) => {
+  const handleSubmitCategory = async (event) => {
     event.preventDefault();
 
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1Y2ZjNWZjMGU5MjdiODI4MzJjZTczMSIsIm5hbWUiOiJUZXN0ZSBEb3plIiwiZW1haWwiOiJ0ZXN0ZTEyQGdtYWlsLmNvbSIsImJpcnRoRGF0ZSI6IjE5NzAtMDEtMDFUMDg6Mzg6NDEuOTc5WiIsImNvdW50cnkiOiJCcmFzaWwiLCJyb2xlcyI6WyJhZG1pbiJdLCJpYXQiOjE3MDg1NzA4MjIsImV4cCI6MTcwODY1NzIyMn0.zzMAaCajzPSvuOSu8Wrs6SiQbWGK4YRcbQ4v-8qUa6U";
+    const token = sessionStorage.getItem("accessToken");
 
     const data = {
       name: categoryInput,
@@ -116,15 +116,20 @@ const Adm = () => {
         <div className="adm-container">
           {activeTab === "jogo" ? (
             <div>
-              <div>
-                <input type="text" placeholder="Insira Jogo" />
-                <button>Adicionar</button>
-              </div>
-              <ItensListaAdm content={gameData} />
+              {categories ? (
+                <FormJogo categorias={categories} method="POST" />
+              ) : (
+                <p>Carregando formulário...</p>
+              )}
+              <ItensListaAdm
+                categories={categories}
+                content={gameData}
+                tab="game"
+              />
             </div>
           ) : (
             <div>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmitCategory}>
                 <input
                   type="text"
                   value={categoryInput}
@@ -136,7 +141,11 @@ const Adm = () => {
                 />
                 <button type="submit">Adicionar</button>
               </form>
-              <ItensListaAdm content={categories} />
+              <ItensListaAdm
+                categories={categories}
+                content={categories}
+                tab="category"
+              />
             </div>
           )}
         </div>
