@@ -14,13 +14,29 @@ const Recomendacao = () => {
   useEffect(() => {
     const fetchData = async () => {
       const userId = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("accessToken");
+
+      const requestRecomendations = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const requestCategory = {
+        method: "GET",
+      };
 
       try {
         const [gamesResponse, categoriesResponse] = await Promise.all([
           fetch(
-            `https://api-best-browser-games.vercel.app/users/${userId}/recomendations`
+            `https://api-best-browser-games.vercel.app/users/${userId}/recomendations`,
+            requestRecomendations
           ),
-          fetch("https://api-best-browser-games.vercel.app/categories"),
+          fetch(
+            "https://api-best-browser-games.vercel.app/categories",
+            requestCategory
+          ),
         ]);
 
         if (!gamesResponse.ok || !categoriesResponse.ok) {

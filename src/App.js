@@ -10,7 +10,7 @@ import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
 import { AlteracaoCadastro } from "./Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx";
 import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
-import { Admin } from "./Paginas/Admin/Admin.jsx";
+import { Adm } from "./Paginas/Adm/Adm.jsx";
 import { Recomendacao } from "./Paginas/Recomendacao/Recomendacao.jsx";
 
 function App() {
@@ -27,7 +27,8 @@ function App() {
           <Route path="/game/:id" element={<DescricaoJogo />} />
           <Route path="/descricao-jogo" element={<DescricaoJogo />} />
           <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/adm" element={<Adm />} />
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
           <Route path="/recomendacao" element={<Recomendacao />} />
         </Routes>
       </BrowserRouter>
