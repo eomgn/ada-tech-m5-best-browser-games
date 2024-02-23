@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./styles.css";
-
 import { Header } from "../../Componentes/Header/Header.jsx";
 import { Title } from "../../Componentes/Title/Title.jsx";
 import { Text } from "../../Componentes/Text/Text.jsx";
@@ -14,6 +13,10 @@ const DescricaoJogo = () => {
 
   const [gameData, setGameData] = useState(null);
   const [gameRating, setGameRating] = useState(null);
+  const [condicaoLogado, setCondicaoLogado] = useState(false);
+  const [campoAvaliacao, setCampoAvaliacao] = useState(false);
+  const [comentario, setComentario] = useState("");
+  const [comentarioEnviado, setComentarioEnviado] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,11 +44,7 @@ const DescricaoJogo = () => {
       }
     };
     fetchData();
-  }, []);
-
-  const [condicaoLogado, setCondicaoLogado] = useState(false);
-  const [campoAvaliacao, setCampoAvaliacao] = useState(false);
-  const [comentario, setComentario] = useState("");
+  }, [id]);
 
   useEffect(() => {
     const name = sessionStorage.getItem("nome");
@@ -58,6 +57,51 @@ const DescricaoJogo = () => {
     setCampoAvaliacao(!campoAvaliacao);
   };
 
+  const handleSubmitComentario = async (novoComentario) => {
+    const url = `https://api-best-browser-games.vercel.app/ratings`;
+    const userId = sessionStorage.getItem('user_id');
+
+    if (!userId) {
+      console.error("ID do usuário não encontrado.");
+      return;
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+        },
+        body: JSON.stringify({
+          score: novoComentario.score,
+          description: novoComentario.description.trim(),
+          game: id,
+          user: userId,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+  
+        if (responseData) {
+          console.log('Comentário enviado com sucesso!');
+          const newGameRating = responseData;
+          setGameRating([...gameRating, newGameRating]);
+          setComentarioEnviado(true);
+          setComentario('');
+        } else {
+          console.error('Erro ao converter a resposta para JSON.');
+        }
+      } else {
+        const errorMessage = await response.json();
+        console.error(`Erro ao enviar o comentário: ${errorMessage.message}`);
+      }
+    } catch (error) {
+      console.error("Erro: ", error);
+    }
+  };
+ 
   return (
     <>
       <Header />
@@ -80,13 +124,15 @@ const DescricaoJogo = () => {
               <BotaoAvaliar condicao={condicaoLogado} onClick={handleClick} />
             </div>
           </div>
-          <div>{campoAvaliacao && <FormularioAvaliar />}</div>
-          <div className="comentario-container">
-            <Comentario gameRating={gameRating} />
+          <div>{campoAvaliacao && (<div><FormularioAvaliar onSubmit={handleSubmitComentario} />
+              {comentarioEnviado ? (alert('Comentário enviado com sucesso!')) : null}</div>)}
           </div>
+          <div className="comentario-container">
+            {gameData.name && <Comentario gameRating={gameRating} />}
+          </div>
         </body>
       ) : (
-        <p>Carregando...</p>
+        <p className="carregando">Carregando...</p>
       )}
     </>
   );
@@ -94,48 +140,4 @@ const DescricaoJogo = () => {
 
 export { DescricaoJogo };
 
-// import { useNavigate  } from "react-router-dom";
-// import { Button } from '../../Componentes/Button';
-// import { Header } from '../../Componentes/Header';
-// import { Container, Title, TextContent, ImageContainer, Image } from './styles';
-// import bannerImage from '../../Assets/banner-best.png';
 
-// const Home = () => {
-
-//     const navigate = useNavigate();
-
-//     const handleClickSignIn = () => {
-//         navigate('/login')
-//     }
-
-//     return (
-//         <>
-
-//         <Header />
-
-//         <Container>
-//             <div id="container_texto">
-//                 <Title>
-//                     Seja Bem-vindo!
-//                 </Title>
-
-//                 <TextContent>
-//                     O Best Browser Games é uma comunidade web onde seus membros poderão compartilhar as suas impressões sobre os browser games que já jogaram, identificando o que gostaram e o que não gostaram.
-
-//                     <br /><br /><br />
-
-//                     <Button title="Começar agora" variant="secondary" onClick={handleClickSignIn} />
-//                 </TextContent>
-//             </div>
-
-//             <ImageContainer id="container_imagem">
-//                 <Image src={bannerImage} alt="Imagem principal do site." />
-//             </ImageContainer>
-
-//         </Container>
-
-//         </>
-//     )
-// }
-
-// export { Home }

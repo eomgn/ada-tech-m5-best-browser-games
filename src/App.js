@@ -8,8 +8,10 @@ import { Login } from "./Paginas/Login/Login.jsx";
 import { CriarConta } from "./Paginas/CriarConta/CriarConta.jsx";
 import { RecuperarSenha } from "./Paginas/RecuperarSenha/RecuperarSenha.jsx";
 import { DescricaoJogo } from "./Paginas/DescricaoJogo/DescricaoJogo.jsx";
-import { AlteracaoCadastro } from './Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx';
+import { AlteracaoCadastro } from "./Paginas/AlteracaoCadastro/AlteracaoCadastro.jsx";
 import { ListaJogo } from "./Paginas/ListaJogo/ListaJogo";
+import { Adm } from "./Paginas/Adm/Adm.jsx";
+import { Recomendacao } from "./Paginas/Recomendacao/Recomendacao.jsx";
 
 function App() {
   return (
@@ -24,9 +26,11 @@ function App() {
           <Route path="/game" element={<ListaJogo />} />
           <Route path="/game/:id" element={<DescricaoJogo />} />
           <Route path="/descricao-jogo" element={<DescricaoJogo />} />
-          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />            
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
+          <Route path="/adm" element={<Adm />} />
+          <Route path="/alteracao-cadastro" element={<AlteracaoCadastro />} />
+          <Route path="/recomendacao" element={<Recomendacao />} />
         </Routes>
-
       </BrowserRouter>
     </div>
   );

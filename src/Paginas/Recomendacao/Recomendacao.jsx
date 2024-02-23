@@ -7,16 +7,39 @@ import InputBar from "../../Componentes/InputBar/InputBar.jsx";
 import { Header } from "../../Componentes/Header/Header.jsx";
 import "./styles.css";
 
-const ListaJogo = () => {
+const Recomendacao = () => {
   const [gameData, setGameData] = useState(null);
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      const userId = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("accessToken");
+
+      console.log(userId);
+      console.log(token);
+
+      const requestRecomendations = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const requestCategory = {
+        method: "GET",
+      };
+
       try {
         const [gamesResponse, categoriesResponse] = await Promise.all([
-          fetch("https://api-best-browser-games.vercel.app/games"),
-          fetch("https://api-best-browser-games.vercel.app/categories"),
+          fetch(
+            `https://api-best-browser-games.vercel.app/users/${userId}/recommendations`,
+            requestRecomendations
+          ),
+          fetch(
+            "https://api-best-browser-games.vercel.app/categories",
+            requestCategory
+          ),
         ]);
 
         if (!gamesResponse.ok || !categoriesResponse.ok) {
@@ -100,7 +123,7 @@ const ListaJogo = () => {
               </div>
             </>
           ) : (
-            <p className="carregando">Carregando...</p>
+            <p>Carregando...</p>
           )}
         </div>
       </body>
@@ -108,4 +131,4 @@ const ListaJogo = () => {
   );
 };
 
-export { ListaJogo };
+export { Recomendacao };
