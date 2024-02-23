@@ -48,7 +48,9 @@ const Header = () => {
             <div className="nav__button">
               <Link to="/">Home</Link>
               <Link to="/game">Jogos</Link>
+              {userInfo && <Link to="/recomendacao">Recomendação</Link>}
               {isAdmin && <Link to="/adm">ADM</Link>}
+
               {userInfo ? (
                 <div className="user-info">
                   <Link to="/login" onClick={handleLogout}>
