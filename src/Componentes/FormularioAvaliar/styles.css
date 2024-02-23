@@ -1,17 +1,7 @@
 .avaliar-form {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-}
-
-.nota-jogo-avaliar,
-.comentario-jogo-avaliar {
-  margin-left: 30%;
-  margin-right: auto;
-  margin-bottom: 10px;
-}
-
-.nota-jogo-avaliar {
+  align-items: center;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
@@ -20,31 +10,46 @@
   color: #ffffff;
 }
 
-.nota-jogo-avaliar input {
-  font-family: "Open Sans";
-  font-style: normal;
-  font-size: 16px;
-  line-height: 22px;
-  color: #ffffff;
-  background-color: transparent; /* Define o fundo do input como transparente */
-  border: 1px solid #f7b84b; /* Define a cor da borda do input */
+.avaliacao {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .comentario-jogo-avaliar {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+
 }
 
 .comentario-jogo-avaliar textarea {
   margin-top: 5px;
-  height: 100px;
-  width: 300px;
+  height: 90px;
+  width: 850px;
   font-family: "Open Sans";
   font-size: 16px;
-  padding: 5px;
+  padding: 30px 15px;
+  margin-right: 20px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid #f7b84b;
+  color: #ffffff;
+}
+
+.nota-jogo-avaliar input {
+  margin-top: 5px;
+  height: 90px;
+  width: 80px;
+  font-family: "Open Sans";
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: transparent;
+  border: 2px solid #f7b84b;
+  color: #ffffff;
 }
 
 .botao-enviar {
   width: 150px;
+  margin-bottom: 50px;
 }

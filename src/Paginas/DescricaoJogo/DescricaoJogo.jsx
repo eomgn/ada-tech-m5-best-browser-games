@@ -125,14 +125,14 @@ const DescricaoJogo = () => {
             </div>
           </div>
           <div>{campoAvaliacao && (<div><FormularioAvaliar onSubmit={handleSubmitComentario} />
-              {comentarioEnviado ? (<p>Comentário enviado com sucesso!</p>) : null}</div>)}
+              {comentarioEnviado ? (alert('Comentário enviado com sucesso!')) : null}</div>)}
           </div>
           <div className="comentario-container">
             {gameData.name && <Comentario gameRating={gameRating} />}
           </div>
         </body>
       ) : (
-        <p>Carregando...</p>
+        <p className="carregando">Carregando...</p>
       )}
     </>
   );
