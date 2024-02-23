@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import './styles.css';
-import usuerOn from '../../Assets/Imagens/usuerOn.png';
-import logo from '../../Assets/Imagens/logo-best.png';
-
+import "./styles.css";
+import usuerOn from "../../Assets/Imagens/usuerOn.png";
+import logo from "../../Assets/Imagens/logo-best.png";
 
 const Header = () => {
   const [userInfo, setUserInfo] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const name = sessionStorage.getItem('nome');
-    const email = sessionStorage.getItem('email');
-    const roles = sessionStorage.getItem('roles');
+    const name = sessionStorage.getItem("nome");
+    const email = sessionStorage.getItem("email");
+    const roles = sessionStorage.getItem("roles");
     const isLoggedIn = name !== null;
 
     if (isLoggedIn) {
       const userRoles = roles ? JSON.parse(roles) : [];
       setUserInfo({ name, email, roles: userRoles });
-      setIsAdmin(userRoles && userRoles.includes('admin'));
+      setIsAdmin(userRoles && userRoles.includes("admin"));
     } else {
       setUserInfo(null);
       setIsAdmin(false);
@@ -26,57 +25,58 @@ const Header = () => {
   }, [isAdmin]);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('nome');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('roles'); 
+    sessionStorage.removeItem("nome");
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("roles");
   };
 
   return (
-
     <>
-        <header>
-          <div className="header__content">
-            <nav>
+      <header>
+        <div className="header__content">
+          <nav>
+            <figure>
+              <Link to="/">
+                <img
+                  src={logo}
+                  alt="Best Browser Games"
+                  title="Best Browser Games"
+                />
+              </Link>
+            </figure>
 
-              <figure>
-                <Link to="/">
-                  <img src={logo} alt="Best Browser Games" title="Best Browser Games" />
-                </Link> 
-              </figure>
+            <div className="nav__button">
+              <Link to="/">Home</Link>
+              <Link to="/game">Jogos</Link>
+              {userInfo && <Link to="/recomendacao">Recomendação</Link>}
 
-              <div className="nav__button">
-                
-                <Link to="/">Home</Link>
-                <Link to="/game">Jogos</Link>
-                
-                {isAdmin && <Link to="/admin">Admin</Link>}
-                {userInfo ? (
-
+              {isAdmin && <Link to="/admin">Admin</Link>}
+              {userInfo ? (
                 <div className="user-info">
-                  
-                  <Link to="/login" onClick={handleLogout}>Sair</Link>
-                  
+                  <Link to="/login" onClick={handleLogout}>
+                    Sair
+                  </Link>
+
                   <figure>
                     <Link to="/alteracao-cadastro">
-                        <img className='image-name' src={usuerOn} alt="Online" title="Online" />
+                      <img
+                        className="image-name"
+                        src={usuerOn}
+                        alt="Online"
+                        title="Online"
+                      />
                     </Link>
                   </figure>
 
-                  <span className='user-name'>{userInfo.name}</span>
-
+                  <span className="user-name">{userInfo.name}</span>
                 </div>
-
-                ) : (
-
+              ) : (
                 <Link to="/login">Entrar</Link>
-            
-                )}
-
-              </div>
-
-            </nav>
-          </div>
-        </header>
+              )}
+            </div>
+          </nav>
+        </div>
+      </header>
     </>
   );
 };
