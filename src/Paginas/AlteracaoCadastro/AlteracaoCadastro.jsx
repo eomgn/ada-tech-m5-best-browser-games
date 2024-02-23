@@ -78,10 +78,10 @@ const AlteracaoCadastro = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="body__content">
           <div className="body__content--text">
-            <Title title="Altere seu Nome ou E-mail cadastrado!" color="#f7b84b" />
+            <Title title="Altere seus dados cadastrados!" color="#f7b84b" />
           </div>
           <div className="body__content--form">
-            <Text text="Ficha de Cadastro" />
+            <Text text="Ficha de Cadastro - Alteração" />
 
             <Input
               type="text"
