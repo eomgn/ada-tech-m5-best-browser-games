@@ -16,6 +16,9 @@ const Recomendacao = () => {
       const userId = sessionStorage.getItem("user_id");
       const token = sessionStorage.getItem("accessToken");
 
+      console.log(userId);
+      console.log(token);
+
       const requestRecomendations = {
         method: "GET",
         headers: {
@@ -30,7 +33,7 @@ const Recomendacao = () => {
       try {
         const [gamesResponse, categoriesResponse] = await Promise.all([
           fetch(
-            `https://api-best-browser-games.vercel.app/users/${userId}/recomendations`,
+            `https://api-best-browser-games.vercel.app/users/${userId}/recommendations`,
             requestRecomendations
           ),
           fetch(
@@ -57,7 +60,6 @@ const Recomendacao = () => {
     };
     fetchData();
   }, []);
-  /////////////////////////////////////////////////
 
   const [category, setCategory] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
