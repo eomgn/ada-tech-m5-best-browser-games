@@ -105,7 +105,7 @@ const ListaJogo = () => {
               </div>
             </>
           ) : (
-            <p>Carregando...</p>
+            <p className="carregando">Carregando...</p>
           )}
         </div>
       </body>
